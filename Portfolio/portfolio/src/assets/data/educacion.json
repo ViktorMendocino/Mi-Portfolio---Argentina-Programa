@@ -1,0 +1,22 @@
+{
+	"education": [
+		{
+			"school": "Argentina Programa",
+			"title": "Programacíon",
+			"img": "#",
+			"career": "Desarrollador Web Full Stack - YoProgramo",
+			"score": 0,
+			"start": "2021",
+			"end": "2022"
+		},
+		{
+			"school": "UTN BA",
+			"title": "Programacíon",
+			"img": "#",
+			"career": "Back End Developer",
+			"score": 82,
+			"start": "2021",
+			"end": "2022"
+		}
+	]
+}

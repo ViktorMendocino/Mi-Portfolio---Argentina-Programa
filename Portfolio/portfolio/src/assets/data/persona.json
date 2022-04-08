@@ -1,0 +1,15 @@
+{
+	"persona":
+		{
+			"fullName": "Victor Miranda",
+			"dateOfBirth": "23/09/1982",
+			"aboutMe": "Frontend: html, css y javascript-Backend: C#,.Net",
+			"mail": "victorraider@gmail.com",
+			"backImage": "#",
+			"image": "https://",
+			"position": "Full Stack Web Developer",
+      "position2": ".NET developer",
+			"ubication": "Mendoza (Argentina) "
+		}
+
+}
