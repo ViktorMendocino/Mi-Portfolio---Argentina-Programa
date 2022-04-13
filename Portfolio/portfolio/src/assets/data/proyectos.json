@@ -1,11 +1,11 @@
 {
-	"educacion": [
+	"proyectos": [
 		{
 			"school": "Argentina Programa",
 			"title": "Programacíon",
 			"img": "https://i.ibb.co/sJHhy5m/argPro.jpg",
 			"career": "Desarrollador Web Full Stack - YoProgramo",
-			"score": 0,
+			"repo": "#",
 			"start": "2021",
 			"end": "2022"
 		},
@@ -14,7 +14,7 @@
 			"title": "Programacíon",
 			"img": "https://i.ibb.co/qDHQ9bD/desarrollador.jpg",
 			"career": "Back End Developer",
-			"score": 82,
+			"repo": "#",
 			"start": "2021",
 			"end": "2022"
 		}

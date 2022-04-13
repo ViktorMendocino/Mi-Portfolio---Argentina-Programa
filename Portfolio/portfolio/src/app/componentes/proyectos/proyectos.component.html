@@ -1,6 +1,19 @@
-<section id="Proyectos" class="m-1 p-2">
+<section id="seccion_proyectos" class="m-1 p-2">
   <h1>Proyectos</h1>
-  <p id="Proyectos">Argentina Programa Mi PortFolio</p>
-  <p id="Proyectos">Crear Menú Paquetes Turisticos .Net</p>
-  <button class="btn btn-primary" onclick="editarProyectos()">Editar</button>
+  <div class="container-fluid">
+      <div *ngFor="let item of proyecto" class="row">
+        <div class="col-2">
+          <img src={{item.img}} class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
+        </div>
+        <div class="col-8">
+          <h2>{{item.school}}</h2>
+          <p>{{item.title}}-{{item.career}}</p>
+          <p>{{item.repo}}</p>
+          <p>{{item.start}}-{{item.end}}</p>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="editarProyectos()">Editar</button>
+  </div>
 </section>
