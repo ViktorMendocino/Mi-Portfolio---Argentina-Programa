@@ -3,10 +3,10 @@
   <div class="container-fluid">
       <div *ngFor="let item of proyecto" class="row">
         <div class="col-2">
-          <img src={{item.img}} class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
+          <img [src]="item.img" class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
         </div>
         <div class="col-8">
-          <h2>{{item.school}}</h2>
+          <h2>{{item.name}}</h2>
           <p>{{item.title}}-{{item.career}}</p>
           <p>{{item.repo}}</p>
           <p>{{item.start}}-{{item.end}}</p>

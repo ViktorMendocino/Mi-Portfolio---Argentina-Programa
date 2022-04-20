@@ -1,8 +1,8 @@
 export class Persona{
- _fullName: string;
- _position: string;
- _ubication: string;
- _url: string;
+ private _fullName: string;
+ private _position: string;
+ private _ubication: string;
+ private _url: string;
 
  constructor(fullName:string,   position:string, ubication:string, url:string)
  {

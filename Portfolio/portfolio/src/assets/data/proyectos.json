@@ -1,19 +1,17 @@
 {
 	"proyectos": [
 		{
-			"school": "Argentina Programa",
+			"name": "Argentina Programa",
 			"title": "Programacíon",
 			"img": "https://i.ibb.co/sJHhy5m/argPro.jpg",
-			"career": "Desarrollador Web Full Stack - YoProgramo",
 			"repo": "#",
 			"start": "2021",
 			"end": "2022"
 		},
 		{
-			"school": "UTN BA",
+			"name": "UTN BA",
 			"title": "Programacíon",
 			"img": "https://i.ibb.co/qDHQ9bD/desarrollador.jpg",
-			"career": "Back End Developer",
 			"repo": "#",
 			"start": "2021",
 			"end": "2022"
