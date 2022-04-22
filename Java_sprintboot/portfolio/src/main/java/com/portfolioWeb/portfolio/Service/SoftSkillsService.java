@@ -21,7 +21,7 @@ public class SoftSkillsService {
     SoftRepo.deleteById(id);
 }
    
-     public List<SoftSkills> listarHSoftSkill(){
+     public List<SoftSkills> listarSoftSkill(){
     return SoftRepo.findAll();
 }
 }

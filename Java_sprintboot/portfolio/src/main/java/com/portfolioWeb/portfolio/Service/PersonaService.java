@@ -26,4 +26,11 @@ public class PersonaService {
      public List<Persona> listarPersonas(){
     return PersoRepository.findAll();
 }
+     
+    public  Persona buscarPersonaPorId(Long id) {
+     return PersoRepository.findById(id).orElse(null);
+    }
+ 
+     
+      
 }

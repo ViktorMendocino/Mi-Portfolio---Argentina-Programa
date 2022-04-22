@@ -24,6 +24,8 @@ public class KnowledgeService {
     KnoRepo.deleteById(id);
 }
        
+   
+       
      public List<Knowledge> listarKnowledge(){
     return KnoRepo.findAll();
 }

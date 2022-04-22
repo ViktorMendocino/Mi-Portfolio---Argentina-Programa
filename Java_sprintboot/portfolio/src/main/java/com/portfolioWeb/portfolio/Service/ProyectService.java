@@ -13,17 +13,17 @@ public class ProyectService {
     ProyectRepository Proyectrepo;   
     
     
-               public void crearSoftSkill(Proyect proyect){
+               public void crearProyect(Proyect proyect){
     Proyectrepo.save(proyect);
 }
-   public void modificarSoftSkill(Proyect proyect){
+   public void modificarProyect(Proyect proyect){
     Proyectrepo.save(proyect);
 }
-   public void eliminarSoftSkill(Long id){
+   public void eliminarProyect(Long id){
     Proyectrepo.deleteById(id);
 }
    
-     public List<Proyect> listarHSoftSkill(){
+     public List<Proyect> listarProyect(){
     return Proyectrepo.findAll();
 }
 }

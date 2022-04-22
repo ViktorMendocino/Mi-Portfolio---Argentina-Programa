@@ -1,8 +1,8 @@
 
 package com.portfolioWeb.portfolio.Controller;
 
-import com.portfolioWeb.portfolio.Model.Education;
-import com.portfolioWeb.portfolio.Service.EducationService;
+import com.portfolioWeb.portfolio.Model.Proyect;
+import com.portfolioWeb.portfolio.Service.ProyectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,33 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200/"})
-public class EducationController {
+public class ProyectController {
     @Autowired
-            
-    EducationService educationservice;
-    @PostMapping("/crearEdu")
-    public void  crearEducation(@RequestBody Education education){
+    
+    
+      ProyectService  ProService;
+    @PostMapping("/crearProyecto")
+    public void  crearProyecto(@RequestBody Proyect proyect){
 
-    educationservice.crearEducation(education);
+    ProService.crearProyect(proyect);
 } 
 
-    @PutMapping("/modificarEdu")
-    public void modificarEducation (@RequestBody Education education){
+    @PutMapping("/modificarProyecto")
+    public void modificarProyecto (@RequestBody Proyect proyect){
     
-    educationservice.crearEducation(education);
+    ProService.modificarProyect(proyect);
     }
     
-    @DeleteMapping("/eliminarEdu/{id}")
-    public void eliminarEducation(@PathVariable Long id ){
-    educationservice.eliminarEducation(id);
+    @DeleteMapping("/eliminarProyecto/{id}")
+    public void eliminarProyecto(@PathVariable Long id ){
+    ProService.eliminarProyect(id);
     }
     
-        @GetMapping("/listaEducation")
+        @GetMapping("/listaProyecto")
         @ResponseBody
-public List<Education> listarEducation(){
-return educationservice.listarEducation() ; 
+public List<Proyect> listarProyecto(){
+return ProService.listarProyect() ; 
 }
-    
-    
-    
 }

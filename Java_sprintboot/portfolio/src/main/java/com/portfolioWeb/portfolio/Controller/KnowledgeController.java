@@ -1,8 +1,8 @@
 
 package com.portfolioWeb.portfolio.Controller;
 
-import com.portfolioWeb.portfolio.Model.Education;
-import com.portfolioWeb.portfolio.Service.EducationService;
+import com.portfolioWeb.portfolio.Model.Knowledge;
+import com.portfolioWeb.portfolio.Service.KnowledgeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,35 +15,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200/"})
-public class EducationController {
+public class KnowledgeController {
     @Autowired
-            
-    EducationService educationservice;
-    @PostMapping("/crearEdu")
-    public void  crearEducation(@RequestBody Education education){
+    
+    
+    KnowledgeService  KnowService;
+    @PostMapping("/crearConocimiento")
+    public void  crearKnowledge(@RequestBody Knowledge Know){
 
-    educationservice.crearEducation(education);
+    KnowService.crearKnowledge(Know);
 } 
 
-    @PutMapping("/modificarEdu")
-    public void modificarEducation (@RequestBody Education education){
+    @PutMapping("/modificarConocimiento")
+    public void modificarKnowledge (@RequestBody Knowledge Know){
     
-    educationservice.crearEducation(education);
+    KnowService.modificarKnowledge(Know);
     }
     
-    @DeleteMapping("/eliminarEdu/{id}")
-    public void eliminarEducation(@PathVariable Long id ){
-    educationservice.eliminarEducation(id);
+    @DeleteMapping("/eliminarCono/{id}")
+    public void eliminarKnowledge(@PathVariable Long id ){
+    KnowService.eliminarKnowledge(id);
     }
     
-        @GetMapping("/listaEducation")
+        @GetMapping("/listaConocimiento")
         @ResponseBody
-public List<Education> listarEducation(){
-return educationservice.listarEducation() ; 
-}
-    
-    
+    public List<Knowledge> listarKnowledge(){
+    return KnowService.listarKnowledge() ; 
+    }
     
 }

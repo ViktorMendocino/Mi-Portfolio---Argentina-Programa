@@ -8,6 +8,8 @@ import { Persona } from '../entidades/persona';
 })
 export class EncabezadoService {
 
+  url:String = 'http://localhost:8080'
+
   constructor(private http: HttpClient) {
     console.log("el servicio esta corriendo");
   }
@@ -15,9 +17,7 @@ export class EncabezadoService {
 obtenerDatosPersona():Observable<any> {
   return this.http.get('./assets/data/persona.json')
 }
-obtenerDatosEducacion():Observable<any>{
-  return this.http.get('./assets/data/educacion.json');
-}
+
 editarDatosPersona(persona:Persona):Observable<any>{
 
 return this.http.post("http://localhost:3000/posts",persona);

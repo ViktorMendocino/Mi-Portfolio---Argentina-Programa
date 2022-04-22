@@ -2,6 +2,7 @@
 package com.portfolioWeb.portfolio.Service;
 import com.portfolioWeb.portfolio.Model.AboutMe;
 import com.portfolioWeb.portfolio.Repository.AboutMeRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class AboutMeService {
     AboutMeRepository.deleteById(id);
 }
       
-      
+
+     public List<AboutMe> solicitarAbout(){
+    return AboutMeRepository.findAll();
+}
     
 }
