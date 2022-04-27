@@ -13,11 +13,11 @@ export class HardAndSoftComponent implements OnInit {
   constructor(private miServicio:HardAndSoftService) { }
 
   ngOnInit(): void {
-    this.miServicio.obtenerDatosHarSkills().subscribe(data => {console.log(data);
-      this.hardSkills = data["hardSkills"];
+    this.miServicio.obtenerDatosHardSkills().subscribe(data => {console.log(data);
+      this.hardSkills = data;
     })
     this.miServicio.obtenerDatosSoftSkills().subscribe(data => {console.log(data);
-      this.softSkills = data["softSkills"];
+      this.softSkills = data;
     })
 
   }

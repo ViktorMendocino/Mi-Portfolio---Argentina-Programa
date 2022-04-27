@@ -24,6 +24,11 @@ public class EducationService {
    public List<Education> listarEducation(){
     return EducationRepo.findAll();
 }
+   
+   public Education buscarEducationPorId(Long id){
+   
+       return EducationRepo.findById(id).orElse(null);
+   }
 }
     
     

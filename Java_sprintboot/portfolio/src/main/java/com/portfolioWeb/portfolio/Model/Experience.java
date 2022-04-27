@@ -21,11 +21,11 @@ public class Experience {
     private String business;
     private String position;
     private String img;
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
     private String tasksDeveloped;
 
-    public Experience(long id, String business, String position, String img, Date start, Date end, String tasksDeveloped) {
+    public Experience(long id, String business, String position, String img, String start, String end, String tasksDeveloped) {
         this.id = id;
         this.business = business;
         this.position = position;

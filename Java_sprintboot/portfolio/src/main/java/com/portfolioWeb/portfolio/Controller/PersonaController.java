@@ -38,7 +38,7 @@ public void crearPersona(@RequestBody Persona persona){
    @PutMapping("/modificarPersona")
 public void modificarPersona(@RequestBody Persona persona){
 
-personaService.crearPersona(persona);
+personaService.modificarPersona(persona);
 }
 
 @DeleteMapping("/eliminarPersona/{id}")

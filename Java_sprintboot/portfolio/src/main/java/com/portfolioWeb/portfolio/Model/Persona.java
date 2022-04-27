@@ -19,14 +19,18 @@ public class Persona {
  private String position ;
  private String ubication;
  private String url ;
+ private String background;
 
-    public Persona(Long id, String fullName, String position, String ubication, String url) {
+    public Persona(Long id, String fullName, String position, String ubication, String url, String background) {
         this.id = id;
         this.fullName = fullName;
         this.position = position;
         this.ubication = ubication;
         this.url = url;
+        this.background = background;
     }
+
+
 
     public Persona() {
     }

@@ -21,7 +21,8 @@ export class EncabezadoComponent implements OnInit {
   position:['',[Validators.required,Validators.minLength(5)]],
   ubication:['',[Validators.required,Validators.minLength(5)]],
   //averiguar expersiones regulares Validators.pattern
-  url:['https://',[Validators.required,Validators.pattern('https.+')]]
+  url:['https://',[Validators.required,Validators.pattern('https.+')]],
+  background:['https://',[Validators.required,Validators.pattern('https.+')]]
   })
  }
 //como el atributo fullName esta dentro de el objeto form , no me lo toma el front por lo que debo usar el metodo get para obtener el child del form
@@ -42,14 +43,17 @@ export class EncabezadoComponent implements OnInit {
   {
     return this.form.get("url");
   }
-
+  get background()
+  {
+    return this.form.get("background");
+  }
 
 
 
 //se agrega el metodo obtener datos por intermedio de data binding con un servicio asincrono que hay que suscribir
   ngOnInit(): void {
-    this.miServicio.obtenerDatosPersona().subscribe(data => {console.log(data);
-      this.persona = data["persona"];
+    this.miServicio.obtenerDatosPersona(1).subscribe(data => {console.log(data);
+      this.persona = data;
     })
   }
   guardarDatosEncabezado(){
@@ -61,8 +65,9 @@ export class EncabezadoComponent implements OnInit {
       let position=this.form.get("position")?.value;
       let ubication=this.form.get("ubication")?.value;
       let url=this.form.get("url")?.value;
+      let background=this.form.get("background")?.value;
 
-      let personaEditar=new Persona(fullName,position,ubication,url);
+      let personaEditar=new Persona(this.persona.id,fullName,position,ubication,url,background);
       this.miServicio.editarDatosPersona(personaEditar).subscribe({next: (d) => {
         this.persona=personaEditar;
         //usando DOM podemos acceder al boton que le asignamos el id="cerraModalEncabezado" y lo obligamos a hacer click para que se cierre la venta modal
@@ -83,7 +88,8 @@ export class EncabezadoComponent implements OnInit {
     this.form.get("fullName")?.setValue(this.persona.fullName);
     this.form.get("position")?.setValue(this.persona.position);
     this.form.get("ubication")?.setValue(this.persona.ubication);
-    this.form.get("url")?.setValue(this.persona.image);
+    this.form.get("url")?.setValue(this.persona.url);
+    this.form.get("background")?.setValue(this.persona.background);
   }
 
   /*guardarDatosEncabezado(){

@@ -5,7 +5,7 @@
   <button class="btn btn-primary" onclick="editarExperiencia()">Editar</button>-->
   <h1>Experiencia</h1>
   <div class="container-fluid">
-    <div *ngFor="let item of experiencia" class="row">
+    <div *ngFor="let item of experience" class="row">
       <div class="col-2">
         <img [src]=item.img class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
       </div>
@@ -13,10 +13,11 @@
         <h2>{{item.business}}</h2>
         <p>{{item.position}}-{{item.tasksDeveloped}}</p>
         <p>{{item.start}}-{{item.end}}</p>
+        <button class="btn btn-outline-primary" onclick="editarExperiencia()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" onclick="eliminarExperiencia()"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
       </div>
       <div class="col">
       </div>
     </div>
-        <button class="btn btn-primary" onclick="editarEducacion()">Editar</button>
     </div>
+    <button class="btn btn-outline-success" onclick="crearExperience()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
 </section>

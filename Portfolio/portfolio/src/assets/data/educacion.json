@@ -1,6 +1,6 @@
 {
 	"educacion": [
-		{
+		{ "id": "1",
 			"school": "Argentina Programa",
 			"title": "Programacíon",
 			"img": "https://i.ibb.co/sJHhy5m/argPro.jpg",
@@ -10,6 +10,7 @@
 			"end": "2022"
 		},
 		{
+      "id": "2",
 			"school": "UTN BA",
 			"title": "Programacíon",
 			"img": "https://i.ibb.co/qDHQ9bD/desarrollador.jpg",

@@ -22,11 +22,11 @@ public class Proyect {
     private String name;
     private String title;
     private String img;
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
     private String repo;
 
-    public Proyect(long id, String name, String title, String img, Date start, Date end, String repo) {
+    public Proyect(long id, String name, String title, String img, String start, String end, String repo) {
         this.id = id;
         this.name = name;
         this.title = title;

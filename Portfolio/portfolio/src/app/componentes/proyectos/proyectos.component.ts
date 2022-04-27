@@ -8,7 +8,7 @@ import { ProyectosService } from 'src/app/servicios/proyectos.service';
 })
 export class ProyectosComponent implements OnInit {
 
-  proyecto:any;
+  proyect:any;
 
   constructor(private miServicio:ProyectosService) {
 
@@ -18,7 +18,7 @@ export class ProyectosComponent implements OnInit {
 
   ngOnInit(): void {
     this.miServicio.obtenerDatosProyectos().subscribe(data => {console.log(data);
-      this.proyecto = data["proyectos"];
+      this.proyect = data;
     })
   }
 

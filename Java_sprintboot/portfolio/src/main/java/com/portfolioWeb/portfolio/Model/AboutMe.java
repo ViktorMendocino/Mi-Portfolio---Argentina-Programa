@@ -15,11 +15,11 @@ public class AboutMe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id;
     @Basic
-private String aboutMe;
+private String name;
 
-public AboutMe(long id, String aboutMe) {
+public AboutMe(long id, String name) {
         this.id = id;
-        this.aboutMe = aboutMe;
+        this.name = name;
     }
 
 public AboutMe() {

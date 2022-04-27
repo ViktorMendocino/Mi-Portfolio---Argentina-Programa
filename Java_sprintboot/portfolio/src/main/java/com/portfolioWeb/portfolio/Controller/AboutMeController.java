@@ -46,7 +46,12 @@ public class AboutMeController {
        return aboutMeService.solicitarAbout();
         
     }
-    
+    @GetMapping("/buscarAcercaDe/{id}")
+    @ResponseBody
+    public AboutMe buscarAboutMePorId(@PathVariable Long id){
+
+    return aboutMeService.buscarAboutMePorId(id);
+    }
     
   
   }

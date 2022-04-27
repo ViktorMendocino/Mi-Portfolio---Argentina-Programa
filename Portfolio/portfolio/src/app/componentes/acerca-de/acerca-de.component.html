@@ -1,5 +1,40 @@
 <section id="Seccion_AcercaDe" class="m-1 p-2">
   <h3>Sobre mí</h3>
-  <p id="Conocimientos">{{persona.aboutMe}}</p>
-  <button class="btn btn-primary" onclick="editarAcercaDe()">Editar</button>
+  <p id="Conocimientos">{{aboutMe.name}}</p>
+  <button ctype="button" *ngIf="usuarioAutenticado" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#acercaDeModal" (click)="mostrarDatosAboutMe()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button>
 </section>
+<!-- Ventana Modal -->
+<div class="modal fade" id="acercaDeModal" tabindex="-1" aria-labelledby="acercaDeModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="acercaDeModalTitulo">Editar Acerca De</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div class="mb-3">
+            <label for="name" class="form-label">Acerca De</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="acercaDe" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                    La descripción es requerida.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                   La descripción debe tener como  mínimo 10 carácteres.
+                </div>
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerraModalAcercaDe" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button" class="btn btn-primary" (click)="guardarDatosAboutMe()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

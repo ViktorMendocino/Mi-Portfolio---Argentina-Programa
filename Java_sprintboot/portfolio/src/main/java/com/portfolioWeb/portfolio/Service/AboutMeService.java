@@ -27,5 +27,8 @@ public class AboutMeService {
      public List<AboutMe> solicitarAbout(){
     return AboutMeRepository.findAll();
 }
-    
+    public  AboutMe buscarAboutMePorId(Long id) {
+     return AboutMeRepository.findById(id).orElse(null);
+    }
+     
 }

@@ -8,19 +8,19 @@ import { Persona } from '../entidades/persona';
 })
 export class EncabezadoService {
 
-  url:String = 'http://localhost:8080'
+  direccion:String = 'http://localhost:8080'
 
   constructor(private http: HttpClient) {
     console.log("el servicio esta corriendo");
   }
 
-obtenerDatosPersona():Observable<any> {
-  return this.http.get('./assets/data/persona.json')
+obtenerDatosPersona(id:number):Observable<any> {
+  return this.http.get(this.direccion+"/buscarPersona/"+id)
 }
 
 editarDatosPersona(persona:Persona):Observable<any>{
 
-return this.http.post("http://localhost:3000/posts",persona);
+return this.http.put(this.direccion+"/modificarPersona",persona);
 }
 
 }

@@ -13,6 +13,7 @@ import { ProyectosComponent } from './componentes/proyectos/proyectos.component'
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

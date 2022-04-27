@@ -1,7 +1,7 @@
 <section id="Seccion_Educacion" class="m-1 p-2">
   <h1>Educación</h1>
   <div class="container-fluid">
-      <div *ngFor="let item of educacion" class="row">
+      <div *ngFor="let item of education" class="row">
         <div class="col-2">
           <img [src]=item.img class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
         </div>
@@ -9,10 +9,86 @@
           <h2>{{item.school}}</h2>
           <p>{{item.title}}-{{item.career}}</p>
           <p>{{item.start}}-{{item.end}}</p>
+          <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#educationModal" (click)="mostrarDatosEducation(1) "><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" onclick="eliminarEducacion()"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
         </div>
         <div class="col">
+
         </div>
       </div>
-      <button class="btn btn-primary" onclick="editarEducacion()">Editar</button>
   </div>
+  <button class="btn btn-outline-success" onclick="crearEducation()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
 </section>
+<!-- Ventana Modal editar-->
+<div class="modal fade" id="educationModal" tabindex="-1" aria-labelledby="educationModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="educationModalTitulo">Editar Encabezado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div class="mb-3">
+            <label for="school" class="form-label">school</label>
+            <input type="text" class="form-control" id="school" formControlName="school" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="school?.invalid && school?.touched">
+                <div *ngIf="school?.errors?.['required']" class="text-danger">
+                    El apellido y nombre es requerido.
+                </div>
+                <div *ngIf="school?.errors?.['minlength']" class="text-danger">
+                   El apellido y nombre debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">title</label>
+            <input type="text" class="form-control" id="title" formControlName="title"  >
+            <div *ngIf="title?.invalid && title?.touched">
+              <div *ngIf="title?.errors?.['required']" class="text-danger">
+                  La posición es requerida.
+              </div>
+              <div *ngIf="title?.errors?.['minlength']" class="text-danger">
+                La posición debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="career" class="form-label">Lugar de Residencia</label>
+            <input type="text" class="form-control" id="career" formControlName="career" >
+            <div *ngIf="career?.invalid && career?.touched">
+              <div *ngIf="career?.errors?.['required']" class="text-danger">
+                  La career es requerida.
+              </div>
+              <div *ngIf="career?.errors?.['minlength']" class="text-danger">
+                La ubicación debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="img" class="form-label">Url de la imagen de perfil</label>
+            <input type="text" class="form-control" id="img" formControlName="img" >
+          </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">start</label>
+            <input type="text" class="form-control" id="start" formControlName="start" >
+          </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">end</label>
+            <input type="text" class="form-control" id="end" formControlName="end" >
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerraeducationModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="guardarDatosEducation()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

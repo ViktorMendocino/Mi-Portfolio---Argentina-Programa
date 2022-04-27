@@ -21,11 +21,11 @@ public class Education {
     private String school;
     private String title;
     private String img;
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
     private String career;
 
-    public Education(long id, String school, String title, String img, Date start, Date end, String career) {
+    public Education(long id, String school, String title, String img, String start, String end, String career) {
         this.id = id;
         this.school = school;
         this.title = title;

@@ -43,7 +43,12 @@ public class EducationController {
 public List<Education> listarEducation(){
 return educationservice.listarEducation() ; 
 }
-    
+    @GetMapping("/buscarEducation/{id}")
+@ResponseBody
+public Education buscarEducationPorId(@PathVariable Long id){
+
+return educationservice.buscarEducationPorId(id);
+}
     
     
 }

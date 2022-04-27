@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConocimientosService } from 'src/app/servicios/conocimientos.service';
 
+
 @Component({
   selector: 'app-conocimientos',
   templateUrl: './conocimientos.component.html',
@@ -8,15 +9,15 @@ import { ConocimientosService } from 'src/app/servicios/conocimientos.service';
 })
 export class ConocimientosComponent implements OnInit {
 
-  persona:any;
+  knowledge :any;
 
   constructor(private miServicio:ConocimientosService ) {
 
    }
 
   ngOnInit(): void {
-    this.miServicio.obtenerDatosPersona().subscribe(data => {console.log(data);
-      this.persona = data["persona"];
+    this.miServicio.obtenerDatosKnowledge().subscribe(data => {console.log(data);
+      this.knowledge = data;
     })
   }
 }

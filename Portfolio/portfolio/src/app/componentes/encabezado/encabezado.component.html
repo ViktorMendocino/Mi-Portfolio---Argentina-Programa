@@ -1,9 +1,9 @@
 <nav class=" mb-1 mt-1 ms-2 me-2">
   <nav class="imagen1">
-   <img src="assets\imagenes\img_portfolio2.jpg" class="img-fluid rounded"  alt="...">
+   <img [src]="persona.background" class="img-fluid rounded"  alt="...">
   </nav>
   <nav class="imagen2">
-    <img [src]="persona.image" class="img-fluid rounded-circle " height="13%" width="13%" alt="...">
+    <img [src]="persona.url" class="img-fluid rounded-circle " height="13%" width="13%" alt="...">
   </nav>
 </nav>
 
@@ -17,7 +17,7 @@
       <p id="residencia">{{persona.ubication}}</p> </div>
 
   </div>
-  <button  type="button" *ngIf="usuarioAutenticado" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#encabezadoModal" (click)="mostrarDatosEncabezado()">Editar</button>
+  <button type="button" *ngIf="usuarioAutenticado" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#encabezadoModal" (click)="mostrarDatosEncabezado()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button>
 </div>
 <!-- Ventana Modal -->
 <div class="modal fade" id="encabezadoModal" tabindex="-1" aria-labelledby="encabezadoModalTitulo" aria-hidden="true">
@@ -55,7 +55,6 @@
                 La posición debe tener como  mínimo 5 caracteres.
               </div>
             </div>
-
           </div>
           <div class="mb-3">
             <label for="ubication" class="form-label">Lugar de Residencia</label>
@@ -70,15 +69,20 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="url" class="form-label">Url de la imagen</label>
+            <label for="url" class="form-label">Url de la imagen de perfil</label>
             <input type="text" class="form-control" id="url" formControlName="url" >
+          </div>
+          <div class="mb-3">
+            <label for="background" class="form-label">Url de imagen de fondo</label>
+            <input type="text" class="form-control" id="background" formControlName="background" >
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" id="cerraModalEncabezado" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary" (click)="guardarDatosEncabezado()">Guardar Cambios</button>
+        <button type="button"  class="btn btn-primary" (click)="guardarDatosEncabezado()">Guardar Cambios</button>
       </div>
     </div>
   </div>
 </div>
+
