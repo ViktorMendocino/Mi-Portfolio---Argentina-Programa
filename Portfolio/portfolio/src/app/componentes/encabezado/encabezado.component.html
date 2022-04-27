@@ -1,0 +1,88 @@
+<nav class=" mb-1 mt-1 ms-2 me-2">
+  <nav class="imagen1">
+   <img [src]="persona.background" class="img-fluid rounded"  alt="...">
+  </nav>
+  <nav class="imagen2">
+    <img [src]="persona.url" class="img-fluid rounded-circle " height="13%" width="13%" alt="...">
+  </nav>
+</nav>
+
+<div class="container  mb-1 background-color:#66D7D1">
+
+  <div class="row">
+
+    <div class="col-4"> <h1 id="nombre" class="nombre">{{persona.fullName}}</h1></div>
+
+    <div class="col-8"> <p id="perfil">{{persona.position}}</p>
+      <p id="residencia">{{persona.ubication}}</p> </div>
+
+  </div>
+  <button type="button" *ngIf="usuarioAutenticado" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#encabezadoModal" (click)="mostrarDatosEncabezado()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button>
+</div>
+<!-- Ventana Modal -->
+<div class="modal fade" id="encabezadoModal" tabindex="-1" aria-labelledby="encabezadoModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="encabezadoModalTitulo">Editar Encabezado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Nombre y Apellido</label>
+            <input type="text" class="form-control" id="fullName" formControlName="fullName" ><!--se agrega formControlName="fullName" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="fullName?.invalid && fullName?.touched">
+                <div *ngIf="fullName?.errors?.['required']" class="text-danger">
+                    El apellido y nombre es requerido.
+                </div>
+                <div *ngIf="fullName?.errors?.['minlength']" class="text-danger">
+                   El apellido y nombre debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="position" class="form-label">Posición</label>
+            <input type="text" class="form-control" id="position" formControlName="position"  >
+            <div *ngIf="position?.invalid && position?.touched">
+              <div *ngIf="position?.errors?.['required']" class="text-danger">
+                  La posición es requerida.
+              </div>
+              <div *ngIf="position?.errors?.['minlength']" class="text-danger">
+                La posición debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="ubication" class="form-label">Lugar de Residencia</label>
+            <input type="text" class="form-control" id="ubication" formControlName="ubication" >
+            <div *ngIf="ubication?.invalid && ubication?.touched">
+              <div *ngIf="ubication?.errors?.['required']" class="text-danger">
+                  La ubicación es requerida.
+              </div>
+              <div *ngIf="ubication?.errors?.['minlength']" class="text-danger">
+                La ubicación debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="url" class="form-label">Url de la imagen de perfil</label>
+            <input type="text" class="form-control" id="url" formControlName="url" >
+          </div>
+          <div class="mb-3">
+            <label for="background" class="form-label">Url de imagen de fondo</label>
+            <input type="text" class="form-control" id="background" formControlName="background" >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerraModalEncabezado" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="guardarDatosEncabezado()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+

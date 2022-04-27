@@ -1,0 +1,17 @@
+{
+	"persona":
+		{
+			"fullName": "Victor Miranda",
+			"dateOfBirth": "23/09/1982",
+			"aboutMe": "Soy un estudiante autodidacta, apasionado por la técnologia",
+      "conocimientos1":"Frontend: html, css y javascript",
+      "conocimientos2":"Backend: Java, C# y sprintboot - SQL server",
+			"mail": "victorraider@gmail.com",
+			"backImage": "#",
+			"image": "https://i.ibb.co/30h8LdB/fotoperfil.jpg",
+			"position": "Full Stack Web Developer",
+			"ubication": "Mendoza (Argentina) "
+
+		}
+
+}

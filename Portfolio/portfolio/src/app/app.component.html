@@ -1,85 +1,18 @@
 
-<header>
+  <header>
   <app-navbar></app-navbar>
-  <nav class=" mb-1 mt-1 ms-2 me-2">
-      <nav class="imagen1">
-       <img src="assets\imagenes\img_portfolio2.jpg" class="img-fluid rounded"  alt="...">
-      </nav>
-      <nav class="imagen2">
-        <img src="assets\imagenes\fotoperfil.jpg" class="img-fluid rounded-circle " height="13%" width="13%" alt="...">
-      </nav>
-  </nav>
-
-  <div class="container background-color:#66D7D1">
-
-      <div class="row">
-
-        <div class="col-4"> <h1 id="nombre" class="nombre">Victor Miranda</h1></div>
-
-        <div class="col-8"> <p id="perfil">Desarrollador Web Full Stack</p>
-          <p id="perfil">Desarrollador .Net</p>
-          <p id="residencia">Mendoza (Argentina)</p> </div>
-      </div>
-  </div>
+  <app-encabezado></app-encabezado>
   </header>
-  <section id="Seccion_AcercaDe" class="m-1 p-2">
-    <h1>Sobre mí</h1>
-    <p id="Conocimientos">Frontend: html, css y javascript</p>
-    <p id="Conocimientos">Backend: C#,.Net</p>
-    <button class="btn btn-primary" onclick="editarAcercaDe()">Editar</button>
-</section>
-  <section id="Seccion_Educacion" class="m-1 p-2">
-      <h1>Educación</h1>
-      <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="assets\imagenes\argPro.jpg" class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
-            </div>
-            <div class="col-8">
-              <h2>Argentina Programa</h2>
-              <p>Desarrollador Web Full Stack - YoProgramo</p>
-            </div>
-            <div class="col">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-2">
-              <img src="assets\imagenes\desarrollador.jpg" class="img-thumbnail" style="background-color: cornflowerblue;" alt="">
-            </div>
-              <div class="col-8">
-                  <h2>UTN BA</h2>
-                  <p>Desarrollador .Net</p>
-              </div>
-            </div>
-            <button class="btn btn-primary" onclick="editarEducacion()">Editar</button>
-        </div>
-  </section>
-  <section id="Conocimientos" class="m-1 p-2">
-    <h1>Conocimientos</h1>
-    <p id="Conocimientos">Frontend: html, css y javascript</p>
-    <p id="Conocimientos">Backend: C#,.Net</p>
-    <button class="btn btn-primary" onclick="editarConocimientos()">Editar</button>
-  </section>
-  <section id="Experiencia" class="m-1 p-2">
-    <h1>Experiencia</h1>
-    <p id="Experiencia">Frontend: html, css y javascript</p>
-    <p id="Experiencia">Backend: C#,.Net</p>
-    <button class="btn btn-primary" onclick="editarExperiencia()">Editar</button>
-  </section>
-
-  <section id="Hard and Soft Skills" class="m-1 p-2">
-    <h1>Hard and Soft Skills</h1>
-    <p id="Hard and Soft Skills">Ingles</p>
-    <p id="Hard and Soft Skills">Reparacio de Pc</p>
-    <button class="btn btn-primary" onclick="editarHardAndSoftSkills()">Editar</button>
-  </section>
-
-  <section id="Proyectos" class="m-1 p-2">
-    <h1>Proyectos</h1>
-    <p id="Proyectos">Argentina Programa Mi PortFolio</p>
-    <p id="Proyectos">Crear Menú Paquetes Turisticos .Net</p>
-    <button class="btn btn-primary" onclick="editarProyectos()">Editar</button>
-  </section>
-  <footer class="mb-2 p-2">
-      <h5>2022 Argentina Programa - Victor Miranda</h5>
+  <body>
+  <app-acerca-de></app-acerca-de>
+  <app-educacion></app-educacion>
+  <app-conocimientos></app-conocimientos>
+  <app-experiencia></app-experiencia>
+  <app-hard-and-soft></app-hard-and-soft>
+  <app-proyectos></app-proyectos>
+  </body>
+  <footer class="m-2 p-3  position-relative bottom-0 end-0">
+      <div class=" position-absolute bottom-0 end-0">2022 Argentina Programa - Victor Miranda</div>
   </footer>
+  
+

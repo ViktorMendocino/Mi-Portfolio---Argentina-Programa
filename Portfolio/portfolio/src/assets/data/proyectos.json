@@ -1,0 +1,20 @@
+{
+	"proyectos": [
+		{
+			"name": "Argentina Programa",
+			"title": "Programacíon",
+			"img": "https://i.ibb.co/sJHhy5m/argPro.jpg",
+			"repo": "#",
+			"start": "2021",
+			"end": "2022"
+		},
+		{
+			"name": "UTN BA",
+			"title": "Programacíon",
+			"img": "https://i.ibb.co/qDHQ9bD/desarrollador.jpg",
+			"repo": "#",
+			"start": "2021",
+			"end": "2022"
+		}
+	]
+}

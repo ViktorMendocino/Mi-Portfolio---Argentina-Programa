@@ -1,0 +1,145 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "fullName": "Victor Alberto Miranda",
+      "position": "Programador",
+      "ubication": "Mendoza Argentina",
+      "image": "https://",
+      "id": 2
+    },
+    {
+      "fullName": "Victor Alberto Miranda",
+      "position": "Programador",
+      "ubication": "Mendoza Argentina",
+      "image": "https://",
+      "id": 3
+    },
+    {
+      "fullName": "Victor Alberto Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza Argentina",
+      "image": "https://",
+      "id": 4
+    },
+    {
+      "fullName": "Victor Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza Argentina",
+      "image": "https://",
+      "id": 5
+    },
+    {
+      "fullName": "Victor Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza Argentina",
+      "image": "https://",
+      "id": 6
+    },
+    {
+      "fullName": "Victor Alberto Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza Argentina",
+      "image": "https://",
+      "id": 7
+    },
+    {
+      "fullName": "Victor  Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza (Argentina) ",
+      "image": "https://hhalhsldasd",
+      "id": 8
+    },
+    {
+      "fullName": "Victor Alberto Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza (Argentina) ",
+      "image": "https://hhalhsldasd",
+      "id": 9
+    },
+    {
+      "fullName": "Victor Alberto Miranda",
+      "position": "Full Stack Web Developer !!!!!!!!!!",
+      "ubication": "Las Heras Mendoza (Argentina) ",
+      "image": "https://hhalhsldasd",
+      "id": 10
+    },
+    {
+      "fullName": "Victor Miranda",
+      "position": "Full Stack Web Developer",
+      "ubication": "Mendoza (Argentina) ",
+      "image": "https://",
+      "id": 11
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer",
+      "_ubication": "Mendoza (Argentina) ",
+      "_image": "https://",
+      "id": 12
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer",
+      "_ubication": "Mendoza (Argentina) ",
+      "_image": "https://casa",
+      "id": 13
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer",
+      "_ubication": "Mendoza (Argentina) ",
+      "_url": "https://",
+      "id": 14
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer",
+      "_ubication": "Mendoza (Argentina) ",
+      "_url": "https://hhalhsldasd",
+      "id": 15
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer !!!!!!!!!!",
+      "_ubication": "Mendoza - Argentina",
+      "_url": "https:/",
+      "id": 16
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer !!!!!!!!!!",
+      "_ubication": "Mendoza - Argentina",
+      "_url": "https://i.ibb.co/30h8LdB/fotoperfil.jpg",
+      "id": 17
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer",
+      "_ubication": "Mendoza (Argentina) ",
+      "_url": "https://i.ibb.co/30h8LdB/fotoperfil.jpg",
+      "id": 18
+    },
+    {
+      "_fullName": "Victor Miranda",
+      "_position": "Full Stack Web Developer",
+      "_ubication": "Mendoza (Argentina) ",
+      "_url": "https://i.ibb.co/30h8LdB/fotoperfil.jpg",
+      "id": 19
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
