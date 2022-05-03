@@ -1,12 +1,13 @@
-.imagen1{
+   .imagen1{
     z-index: 0;
     position:static;
     }
+
     .imagen2{
         z-index: 1;
         position: relative;
-        top:-2.5em;
-        left: 7%;
+        top:-3em;
+
 
 
     }

@@ -19,6 +19,16 @@ export class ExperienciaService {
 
     return this.http.put(this.direccion+"/modificarExp",experience);
     }
+   eliminarExperienciaPorId(id:number):Observable<any> {
+    return this.http.delete(this.direccion+"/eliminarExp/"+id)}
+
+    crearDatosExperiencia(experience:Experience):Observable<any> {
+     return this.http.post(this.direccion+"/crearExp",experience)}
+
+
+
+
+
 
 
 }

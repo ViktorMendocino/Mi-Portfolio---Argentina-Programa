@@ -23,5 +23,10 @@ export class EducacionService {
   modificarDatosEducacion(education:Education):Observable<any> {
     return this.http.put(this.direccion+"/modificarEdu",education)}
 
+    eliminarEducacionPorId(id:number):Observable<any> {
+      return this.http.delete(this.direccion+"/eliminarEdu/"+id)}
+
+      crearDatosEducacion(education:Education):Observable<any> {
+        return this.http.post(this.direccion+"/crearEdu",education)}
 
 }

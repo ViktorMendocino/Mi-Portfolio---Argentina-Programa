@@ -15,6 +15,15 @@ export class ConocimientosService {
   obtenerDatosKnowledge():Observable<any> {
     return this.http.get(this.direccion+'/listaConocimiento')
   }
-  modificarDatosKnowledge(knowledge:Knowledge):Observable<any> {
+  modificarDatosconocimientos(knowledge:Knowledge):Observable<any> {
     return this.http.put(this.direccion+"/modificarConocimiento",knowledge)}
+
+  eliminarConocimientoPorId(id:number):Observable<any> {
+      return this.http.delete(this.direccion+"/eliminarCono/"+id)}
+
+  crearDatosConocimiento(knowledge:Knowledge):Observable<any> {
+       return this.http.post(this.direccion+"/crearConocimiento",knowledge)}
+
+
+
 }

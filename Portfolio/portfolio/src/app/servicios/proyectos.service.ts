@@ -20,7 +20,15 @@ obtenerDatosProyectos():Observable<any> {
 }
 editarDatosProyecto(proyect:Proyect):Observable<any>{
 
-  return this.http.put(this.direccion+"/modificarHSkills",proyect);
+  return this.http.put(this.direccion+"/modificarProyecto",proyect);
   }
+
+  eliminarProyectosPorId(id:number):Observable<any> {
+    return this.http.delete(this.direccion+"/eliminarProyecto/"+id)}
+
+    crearDatosProyectos(proyect:Proyect):Observable<any> {
+     return this.http.post(this.direccion+"/crearProyecto",proyect)}
+
+
 
 }
