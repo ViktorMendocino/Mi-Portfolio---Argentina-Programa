@@ -41,7 +41,7 @@ export class HardAndSoftService {
 
    editarDatosSoftSkills(softSkills:SoftSkills):Observable<any>{
 
-      return this.http.put(this.direccion+"/modificarHSkills",softSkills);
+      return this.http.put(this.direccion+"/modificarSoft",softSkills);
       }
 
 

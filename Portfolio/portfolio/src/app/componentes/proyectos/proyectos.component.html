@@ -7,14 +7,164 @@
         </div>
         <div class="col-8">
           <h2>{{item.name}}</h2>
-          <p>{{item.title}}-{{item.career}}</p>
+          <p>{{item.title}}</p>
           <p>{{item.repo}}</p>
           <p>{{item.start}}-{{item.end}}</p>
-          <button class="btn btn-outline-primary" onclick="editarProyectos()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" onclick="eliminarProyecto()"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+          <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#proyectModal" (click)="mostrarDatosproyecto(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" (click)="eliminarProyecto(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
         </div>
         <div class="col">
         </div>
       </div>
   </div>
-  <button class="btn btn-outline-success" onclick="crearProyectos()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+  <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#proyectModal2" ><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
 </section>
+<!-- Ventana Modal editar modificar proyecto -->
+<div class="modal fade" id="proyectModal" tabindex="-1" aria-labelledby="proyectModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-position" id="proyectModalTitulo">Editar Proyecto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Empresa o Establecimiento</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="name" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                    La Empresa o Establecimiento es requerido.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  La Empresa o Establecimiento debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Función</label>
+            <input type="text" class="form-control" id="title" formControlName="title"  >
+            <div *ngIf="title?.invalid && title?.touched">
+              <div *ngIf="title?.errors?.['required']" class="text-danger">
+                La Función es requerida.
+              </div>
+              <div *ngIf="title?.errors?.['minlength']" class="text-danger">
+                La Función debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="repo" class="form-label">Url del Repositorio</label>
+            <input type="text" class="form-control" id="repo" formControlName="repo" >
+            <div *ngIf="repo?.invalid && repo?.touched">
+              <div *ngIf="repo?.errors?.['required']" class="text-danger">
+               La Url del Repositorio es requerida.
+              </div>
+              <div *ngIf="repo?.errors?.['minlength']" class="text-danger">
+               La Url del Repositorio debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="img" class="form-label">Url de la imagen del Proyecto</label>
+            <input type="text" class="form-control" id="img" formControlName="img" >
+          </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">Año de inicio</label>
+            <input type="text" class="form-control" id="start" formControlName="start" >
+          </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">Año de finalización</label>
+            <input type="text" class="form-control" id="end" formControlName="end" >
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerraproyectModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary"  (click)="guardarDatosproyecto(proyect)">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ventana Modal editar crear educacion -->
+<div class="modal fade" id="proyectModal2" tabindex="-1" aria-labelledby="proyectModalTitulo2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="proyectModalTitulo2">Editar Educación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Empresa o Establecimiento</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="name" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                 La Empresa o Establecimiento es requerida.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  La Empresa o Establecimiento debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Función</label>
+            <input type="text" class="form-control" id="title" formControlName="title"  >
+            <div *ngIf="title?.invalid && title?.touched">
+              <div *ngIf="title?.errors?.['required']" class="text-danger">
+                  La Función es requerida.
+              </div>
+              <div *ngIf="title?.errors?.['minlength']" class="text-danger">
+                La Función debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="repo" class="form-label">Url del Repositorio</label>
+            <input type="text" class="form-control" id="repo" formControlName="repo" >
+            <div *ngIf="repo?.invalid && repo?.touched">
+              <div *ngIf="repo?.errors?.['required']" class="text-danger">
+                La Url del Repositorio es requerida.
+              </div>
+              <div *ngIf="repo?.errors?.['minlength']" class="text-danger">
+                La Url del Repositorio debe tener como  mínimo 5 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="img" class="form-label">Url de la imagen del Proyecto</label>
+            <input type="text" class="form-control" id="img" formControlName="img" >
+          </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">Año de inicio</label>
+            <input type="text" class="form-control" id="start" formControlName="start" >
+          </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">Año de finalización</label>
+            <input type="text" class="form-control" id="end" formControlName="end" >
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerraproyectModal2" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="crearDatosProyecto(proyect)">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,8 +17,6 @@ export class Experience{
      this.position=position;
      this.img=img;
      this.start=start;
-     this.img=img;
-     this.start=start;
      this.end=end;
      this.tasksDeveloped=tasksDeveloped;
 
