@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConocimientosService } from 'src/app/servicios/conocimientos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Knowledge } from 'src/app/entidades/knowledge';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-conocimientos',
@@ -11,9 +12,9 @@ import { Knowledge } from 'src/app/entidades/knowledge';
 export class ConocimientosComponent implements OnInit {
   form:FormGroup;
   knowledge:any;
-  visibilidadDeFormulario:boolean = false;
+  usuarioAutenticado:boolean=false;
 
-  constructor(private miServicio:ConocimientosService, private miFormBuilder:FormBuilder ) {
+  constructor(private miServicio:ConocimientosService, private miFormBuilder:FormBuilder,private loginServicio:LoginService ) {
 
     this.form = this.miFormBuilder.group({
       id:[''],
@@ -36,6 +37,7 @@ export class ConocimientosComponent implements OnInit {
     this.miServicio.obtenerDatosKnowledge().subscribe(data => {console.log(data);
       this.knowledge = data;
     })
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 
   mostrarDatosConocimiento(id:number){

@@ -16,7 +16,7 @@ export class HardAndSoftService {
 
   // servicios HardSkills
   obtenerDatosHardSkills():Observable<any> {
-    return this.http.get(this.direccion+"/solicitarHskills")
+    return this.http.get(this.direccion+"/solicitarHskills");
   }
 
 

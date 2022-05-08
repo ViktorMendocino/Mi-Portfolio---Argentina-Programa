@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from 'src/app/servicios/experiencia.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Experience } from 'src/app/entidades/experience';
+import { LoginService } from 'src/app/servicios/login.service';
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
@@ -10,9 +11,9 @@ import { Experience } from 'src/app/entidades/experience';
 export class ExperienciaComponent implements OnInit {
   form:FormGroup;
   experience:any;
-  visibilidadDeFormulario:boolean = false;
+  usuarioAutenticado:boolean=false;
 
-  constructor(private miServicio:ExperienciaService , private miFormBuilder:FormBuilder) {
+  constructor(private miServicio:ExperienciaService , private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
     this.form = this.miFormBuilder.group({
       id:[''],
       business:['',[Validators.required,Validators.minLength(5)]],
@@ -58,6 +59,7 @@ export class ExperienciaComponent implements OnInit {
     this.miServicio.obtenerDatosExp().subscribe(data => {console.log(data);
       this.experience = data;
     })
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 
 

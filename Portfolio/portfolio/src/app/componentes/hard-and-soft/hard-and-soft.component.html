@@ -6,28 +6,28 @@
       <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><h1>Habilidades Duras<button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#hardSkillsModal2" onclick="crearHardSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
+                <h6 class="m-0 font-weight-bold text-primary"><h1>Habilidades Duras<button class="btn btn-outline-success" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#hardSkillsModal2" onclick="crearHardSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
             </div>
             <div *ngFor="let item of hardSkills"   class="card-body">
                 <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
                 <div class="progress mb-4">
                     <div class="progress-bar bg-blue" role="progressbar" [style.width.%] ="item.value" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#hardSkillsModal" (click)="mostrarDatoshardSkills(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" (click)="eliminarHardSkills(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+                <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#hardSkillsModal" (click)="mostrarDatoshardSkills(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarHardSkills(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
             </div>
         </div>
     </div>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary"><h1>Habilidades Blandas<button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#softSkillsModal2" onclick="crearSoftSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
+                    <h6 class="m-0 font-weight-bold text-primary"><h1>Habilidades Blandas<button class="btn btn-outline-success" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#softSkillsModal2" onclick="crearSoftSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
                 </div>
                 <div *ngFor="let item of softSkills"   class="card-body">
                     <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-danger" role="progressbar" [style.width.%] ="item.value" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <button class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#softSkillsModal" (click)="mostrarDatosSoftSkills(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" (click)="eliminarSoftSkills(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+                    <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado"  data-bs-toggle="modal" data-bs-target="#softSkillsModal" (click)="mostrarDatosSoftSkills(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarSoftSkills(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+          <div  class="mb-3">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
@@ -99,7 +99,7 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+          <div  class="mb-3">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
@@ -154,7 +154,7 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+          <div  class="mb-3">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
@@ -206,7 +206,7 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+          <div  class="mb-3">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>

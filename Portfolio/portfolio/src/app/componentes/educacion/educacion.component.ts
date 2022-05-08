@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Education } from 'src/app/entidades/education';
 import { EducacionService } from 'src/app/servicios/educacion.service';
+import { LoginService } from 'src/app/servicios/login.service';
 @Component({
   selector: 'app-educacion',
   templateUrl: './educacion.component.html',
@@ -11,9 +12,9 @@ export class EducacionComponent implements OnInit {
 form:FormGroup;
 
   education:any;
-  visibilidadDeFormulario:boolean = false;
+  usuarioAutenticado:boolean=false;
 
-  constructor(private miServicio:EducacionService, private miFormBuilder:FormBuilder) {
+  constructor(private miServicio:EducacionService, private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
   this.form = this.miFormBuilder.group({
     id:[''],
     school:['',[Validators.required,Validators.minLength(5)]],
@@ -60,7 +61,7 @@ form:FormGroup;
     this.miServicio.obtenerDatosEducacion().subscribe(data => {console.log(data);
       this.education = data;
     })
-
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
 
   }
 

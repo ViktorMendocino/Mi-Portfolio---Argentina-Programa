@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectosService } from 'src/app/servicios/proyectos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Proyect } from 'src/app/entidades/proyect';
+import { LoginService } from 'src/app/servicios/login.service';
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
@@ -10,9 +11,9 @@ import { Proyect } from 'src/app/entidades/proyect';
 export class ProyectosComponent implements OnInit {
   form:FormGroup;
   proyect:any;
-  visibilidadDeFormulario:boolean = false;
+  usuarioAutenticado:boolean=false;
 
-  constructor(private miServicio:ProyectosService , private miFormBuilder:FormBuilder) {
+  constructor(private miServicio:ProyectosService , private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
     this.form = this.miFormBuilder.group({
       id:[''],
       name:['',[Validators.required,Validators.minLength(5)]],
@@ -60,6 +61,7 @@ export class ProyectosComponent implements OnInit {
     this.miServicio.obtenerDatosProyectos().subscribe(data => {console.log(data);
       this.proyect = data;
     })
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 
   mostrarDatosproyecto(id:number){

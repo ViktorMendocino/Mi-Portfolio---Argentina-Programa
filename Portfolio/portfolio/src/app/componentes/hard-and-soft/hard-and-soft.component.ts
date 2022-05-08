@@ -3,6 +3,7 @@ import { HardAndSoftService } from 'src/app/servicios/hard-and-soft.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HardSkills } from 'src/app/entidades/HardSkills';
 import { SoftSkills } from 'src/app/entidades/softSkills';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-hard-and-soft',
@@ -13,10 +14,10 @@ export class HardAndSoftComponent implements OnInit {
   form:FormGroup;
   hardSkills:any;
   softSkills:any;
-  visibilidadDeFormulario:boolean = false;
+  usuarioAutenticado:boolean=false;
 
 
-  constructor(private miServicio:HardAndSoftService, private miFormBuilder:FormBuilder) {
+  constructor(private miServicio:HardAndSoftService, private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
     this.form = this.miFormBuilder.group({
       id:[''],
       name:['',[Validators.required,Validators.minLength(5)]],
@@ -45,6 +46,7 @@ export class HardAndSoftComponent implements OnInit {
     this.miServicio.obtenerDatosSoftSkills().subscribe(data => {console.log(data);
       this.softSkills = data;
     })
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 //Metodos Hard Skills
 mostrarDatoshardSkills(id:number){

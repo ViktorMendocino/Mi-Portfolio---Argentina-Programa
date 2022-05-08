@@ -13,13 +13,13 @@
         <h2>{{item.business}}</h2>
         <p>{{item.position}}-{{item.tasksDeveloped}}</p>
         <p>{{item.start}}-{{item.end}}</p>
-        <button class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#experienceModal" (click)="mostrarDatosExperiencia(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" (click)="eliminarExperiencia(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+        <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#experienceModal" (click)="mostrarDatosExperiencia(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarExperiencia(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
       </div>
       <div class="col">
       </div>
     </div>
     </div>
-    <button class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#experienceModal2" ><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+    <button class="btn btn-outline-success" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#experienceModal2" ><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
 </section>
 <!-- Ventana Modal editar modificar experiencia -->
 <div class="modal fade" id="experienceModal" tabindex="-1" aria-labelledby="experienceModalTitulo" aria-hidden="true">
@@ -32,7 +32,7 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+          <div class="mb-3">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
@@ -107,7 +107,7 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div *ngIf="visibilidadDeFormulario" class="mb-3">
+          <div  class="mb-3">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
