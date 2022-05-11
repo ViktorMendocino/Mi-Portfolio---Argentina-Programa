@@ -12,8 +12,9 @@ export class EducacionComponent implements OnInit {
 form:FormGroup;
 
   education:any;
+  listEducation!: Education[];
   usuarioAutenticado:boolean=false;
-
+  visualizarId:boolean=false;
   constructor(private miServicio:EducacionService, private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
   this.form = this.miFormBuilder.group({
     id:[''],

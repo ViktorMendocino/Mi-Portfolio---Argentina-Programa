@@ -13,7 +13,7 @@ export class ConocimientosComponent implements OnInit {
   form:FormGroup;
   knowledge:any;
   usuarioAutenticado:boolean=false;
-
+  visualizarId:boolean=false;
   constructor(private miServicio:ConocimientosService, private miFormBuilder:FormBuilder,private loginServicio:LoginService ) {
 
     this.form = this.miFormBuilder.group({

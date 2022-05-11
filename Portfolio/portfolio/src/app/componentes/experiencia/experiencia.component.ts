@@ -12,7 +12,7 @@ export class ExperienciaComponent implements OnInit {
   form:FormGroup;
   experience:any;
   usuarioAutenticado:boolean=false;
-
+  visualizarId:boolean=false;
   constructor(private miServicio:ExperienciaService , private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
     this.form = this.miFormBuilder.group({
       id:[''],

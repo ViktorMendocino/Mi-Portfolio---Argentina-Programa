@@ -18,8 +18,8 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div  class="mb-3">
-            <label for="id" class="form-label">Registro N°</label>
+          <div  class="mb-3" *ngIf="visualizarId">
+            <label  for="id"  class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
           <div class="mb-3">
@@ -57,21 +57,21 @@
       <div class="modal-body">
 <!-- formulario dentro de la Ventana Modal -->
         <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
-          <div  class="mb-3">
+          <div  class="mb-3" *ngIf="visualizarId">
             <label for="id" class="form-label">Registro N°</label>
             <input type="text" class="form-control" id="id" formControlName="id"  >
           </div>
           <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
+            <label for="name" class="form-label">Conocimiento</label>
             <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
               que instancia pertenece a cada campo-->
               <!--se agregan validaciones para la interface de usuario con el ngIf-->
               <div *ngIf="name?.invalid && name?.touched">
                 <div *ngIf="name?.errors?.['required']" class="text-danger">
-                  La descripción es requerida.
+                  El Conocimiento es requerida.
                 </div>
                 <div *ngIf="name?.errors?.['minlength']" class="text-danger">
-                  La descripción debe tener como  mínimo 5 caracteres.
+                  El Conocimiento debe tener como  mínimo 5 caracteres.
                 </div>
               </div>
           </div>

@@ -15,7 +15,7 @@ export class HardAndSoftComponent implements OnInit {
   hardSkills:any;
   softSkills:any;
   usuarioAutenticado:boolean=false;
-
+  visualizarId:boolean=false;
 
   constructor(private miServicio:HardAndSoftService, private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
     this.form = this.miFormBuilder.group({

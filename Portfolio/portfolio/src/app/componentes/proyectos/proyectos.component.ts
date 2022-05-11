@@ -12,7 +12,7 @@ export class ProyectosComponent implements OnInit {
   form:FormGroup;
   proyect:any;
   usuarioAutenticado:boolean=false;
-
+  visualizarId:boolean=false;
   constructor(private miServicio:ProyectosService , private miFormBuilder:FormBuilder,private loginServicio:LoginService) {
     this.form = this.miFormBuilder.group({
       id:[''],
