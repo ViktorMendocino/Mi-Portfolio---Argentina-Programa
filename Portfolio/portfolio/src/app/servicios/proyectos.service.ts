@@ -7,7 +7,7 @@ import { Proyect } from '../entidades/proyect';
   providedIn: 'root'
 })
 export class ProyectosService {
-  direccion:String = 'http://localhost:8080'
+  direccion:String = 'https://victormirandaportfolio.herokuapp.com'
 
   constructor(private http: HttpClient) {
     console.log("el servicio esta corriendo");

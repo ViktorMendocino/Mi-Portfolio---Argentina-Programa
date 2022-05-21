@@ -11,7 +11,7 @@ import { Login } from '../entidades/login';
 export class LoginService {
 
   @Output() disparadordeLogin:EventEmitter<any> = new EventEmitter();
-  direccion:String = 'http://localhost:8080';
+  direccion:String = 'https://victormirandaportfolio.herokuapp.com';
   constructor(private http: HttpClient) {
    }
 

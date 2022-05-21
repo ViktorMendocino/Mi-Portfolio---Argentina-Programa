@@ -1,6 +1,5 @@
 
 package com.portfolioWeb.portfolio.Controller;
-
 import com.portfolioWeb.portfolio.Model.Persona;
 import com.portfolioWeb.portfolio.Service.PersonaService;
 import java.util.List;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200/"})
+@CrossOrigin(origins = {"https://victormirandaportfolio.web.app/"})
 public class PersonaController {
     @Autowired
        

@@ -1,7 +1,6 @@
 
 package com.portfolioWeb.portfolio.Model;
 
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

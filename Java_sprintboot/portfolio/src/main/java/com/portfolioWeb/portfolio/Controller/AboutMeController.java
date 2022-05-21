@@ -1,6 +1,5 @@
 
 package com.portfolioWeb.portfolio.Controller;
-
 import com.portfolioWeb.portfolio.Model.AboutMe;
 import com.portfolioWeb.portfolio.Service.AboutMeService;
 import java.util.List;
@@ -15,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
   @RestController
-  @CrossOrigin(origins = {"http://localhost:4200/"})
+  @CrossOrigin(origins = {"https://victormirandaportfolio.web.app/"})
 public class AboutMeController {
   @Autowired 
   

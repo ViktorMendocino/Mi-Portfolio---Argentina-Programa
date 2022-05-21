@@ -1,7 +1,7 @@
 
 package com.portfolioWeb.portfolio.Model;
 
-import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class Proyect {
         this.img = img;
         this.start = start;
         this.end = end;
-        this.repo = repo;
+        this.repo=repo ;
     }
 
     public Proyect() {

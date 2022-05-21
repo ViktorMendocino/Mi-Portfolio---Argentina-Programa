@@ -8,7 +8,7 @@ import { Education } from '../entidades/education';
   providedIn: 'root'
 })
 export class EducacionService {
-  direccion:String = 'http://localhost:8080'
+  direccion:String = 'https://victormirandaportfolio.herokuapp.com'
 
   constructor(private http: HttpClient ) {
     console.log("el servicio esta corriendo");
