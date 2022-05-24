@@ -35,6 +35,7 @@ export class ConocimientosComponent implements OnInit {
     }
 
 
+
   ngOnInit(): void {
     this.miServicio.obtenerDatosKnowledge().subscribe(data => {console.log(data);
       this.knowledge = data;
@@ -42,8 +43,8 @@ export class ConocimientosComponent implements OnInit {
     this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;
       console.log(data);
     })
-    this.navbar.cerrarLogin.subscribe(data => {this.ocultarMenu=data;
-      console.log(data);})
+    this.navbar.cerrarLogin.subscribe(data => {this.usuarioAutenticado=data;
+      console.log(this.usuarioAutenticado);})
 
   }
 

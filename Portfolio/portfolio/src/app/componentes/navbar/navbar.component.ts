@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
    let Newlogin=new Login(id,user,pwd);
     this.loginServicio.verficarUsuario(Newlogin).subscribe(data => {this.usuarioAutenticado=data;
     if(data==true){
-      alert("Se ha logeado correctamente.")
+      alert("Se ha logueado correctamente.")
       document.getElementById("cerrarCanvas")?.click();
       console.log(this.usuarioAutenticado);
       this.agregarLogin();
@@ -80,7 +80,8 @@ data:this.usuarioAutenticado
 cerrarlogin(){
 
   this.usuarioAutenticado=false;
-  console.log(this.usuarioAutenticado);
+  //this.logOut();
+  //console.log(this.usuarioAutenticado);
   location.reload();
 
 }
