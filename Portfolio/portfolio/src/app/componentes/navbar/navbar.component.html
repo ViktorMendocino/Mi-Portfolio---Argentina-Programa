@@ -1,10 +1,14 @@
 <nav class="navbar navbar-dark bg-primary  rounded-top" >
   <div class="container-fluid ">
+
     <a class="navbar-brand" href="#">
-      <img src="assets\imagenes\iconoArPro.png" alt="" width="50" height="30">
+      <img src="assets\imagenes\iconoArPro.png"   alt="" width="50" height="30">
     </a>
-    <a class="navbar-brand text-white justify-content flex-grow-1 pe-3" href="#">Argentina Programa -
-      #YoProgramo</a>
+    <a class="navbar-brand text-white justify-content flex-grow-1 pe-3" href="#">Argentina Programa - #YoProgramo</a>
+
+
+
+
     <ul class="nav bg-primary justify-content-end">
       <li class="nav-item">
         <a class="nav-link text-white" aria-current="page" href="https://www.facebook.com/victorraider"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -23,9 +27,10 @@
         </svg></a>
         </li>
       </ul>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" *ngIf="!usuarioAutenticado">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <button type="button" class="btn btn-danger" *ngIf="usuarioAutenticado" (click)="cerrarlogin()" >Cerrar sesión</button>
 
 
 
@@ -65,7 +70,7 @@
                 </div>
               </form>
 
-              <button type="button" class="btn btn-secondary" (click)="verificarLogin()" >Login</button>
+              <button type="button" class="btn btn-success" (click)="verificarLogin()" >Login</button>
 <!--
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">

@@ -4,7 +4,8 @@
     <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
     <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado"  data-bs-toggle="modal" data-bs-target="#conocimientosModal" (click)="mostrarDatosConocimiento(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarConocimientos(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
 </div>
-  <button class="btn btn-outline-success" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#conocimientoModal2" onclick="crearConocimiento()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+<button class="btn btn-outline-success"  *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#conocimientoModal2"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+
 </section>
 
 <!-- Ventana Modal editar modificar Conocimientos -->

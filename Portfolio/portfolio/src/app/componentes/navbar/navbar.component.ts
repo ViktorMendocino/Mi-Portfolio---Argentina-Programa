@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Login } from 'src/app/entidades/login';
 import { LoginService } from 'src/app/servicios/login.service';
+import { NavbarService } from 'src/app/servicios/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   usuarioAutenticado:boolean= false;
 
-  constructor(private miServicio:LoginService  ,private miFormBuilder:FormBuilder) {
+  constructor(private loginServicio:LoginService  ,private miFormBuilder:FormBuilder ,private miServicio:NavbarService) {
     this.form = this.miFormBuilder.group({
       usuario:['',[Validators.required,Validators.minLength(5)]],
       pwd:['',[Validators.required,Validators.minLength(2)]]
@@ -33,6 +34,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
+
   }
 
   //metodos
@@ -44,7 +46,7 @@ export class NavbarComponent implements OnInit {
    let pwd = this.form.get("pwd")?.value;
    let id= 1;
    let Newlogin=new Login(id,user,pwd);
-    this.miServicio.verficarUsuario(Newlogin).subscribe(data => {this.usuarioAutenticado=data;
+    this.loginServicio.verficarUsuario(Newlogin).subscribe(data => {this.usuarioAutenticado=data;
     if(data==true){
       alert("Se ha logeado correctamente.")
       document.getElementById("cerrarCanvas")?.click();
@@ -63,11 +65,24 @@ export class NavbarComponent implements OnInit {
   }
 
   agregarLogin(){
-this.miServicio.disparadordeLogin.emit({
+this.loginServicio.disparadordeLogin.emit({
 data:this.usuarioAutenticado
 })
+}
 
- }
+ logOut(){
+  this.miServicio.cerrarLogin.emit({
+    data:this.usuarioAutenticado
+  })
+   }
 
+
+cerrarlogin(){
+
+  this.usuarioAutenticado=false;
+  console.log(this.usuarioAutenticado);
+  location.reload();
+
+}
 
 }
