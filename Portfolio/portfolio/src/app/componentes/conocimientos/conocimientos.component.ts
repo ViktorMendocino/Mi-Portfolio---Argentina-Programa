@@ -12,6 +12,7 @@ import { NavbarService } from 'src/app/servicios/navbar.service';
 })
 export class ConocimientosComponent implements OnInit {
   form:FormGroup;
+  listKnowledge!:Knowledge[];
   knowledge:any;
   usuarioAutenticado:boolean=false;
   visualizarId:boolean=false;
@@ -38,7 +39,7 @@ export class ConocimientosComponent implements OnInit {
 
   ngOnInit(): void {
     this.miServicio.obtenerDatosKnowledge().subscribe(data => {console.log(data);
-      this.knowledge = data;
+      this.listKnowledge = data;
     })
     this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;
       console.log(data);
@@ -48,11 +49,11 @@ export class ConocimientosComponent implements OnInit {
 
   }
 
-  mostrarDatosConocimiento(id:number){
+  mostrarDatosConocimiento(item:Knowledge){
 
-    this.form.get("name")?.setValue(this.knowledge[id-1].name)
+    this.form.get("name")?.setValue(this.listKnowledge[this.listKnowledge.indexOf(item)].name)
 
-    this.form.get("id")?.setValue(this.knowledge[id-1].id);
+    this.form.get("id")?.setValue(this.listKnowledge[this.listKnowledge.indexOf(item)].id);
   }
 
 

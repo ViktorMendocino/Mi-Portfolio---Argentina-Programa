@@ -1,9 +1,10 @@
 export class Login{
-  private id: number;
+
+ private id: number;
  private usuario: string;
  private pwd: string;
 
-
+//getters and setters
 
 
 

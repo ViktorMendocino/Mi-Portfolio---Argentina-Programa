@@ -1,11 +1,12 @@
 export class Experience{
-  private id: number;
- private business: string;
- private position: string;
- private img: string;
- private start: string;
- private end: string;
- private tasksDeveloped: string;
+
+ public id: number;
+ public business: string;
+ public position: string;
+ public img: string;
+ public start: string;
+ public end: string;
+ public tasksDeveloped: string;
 
 
 

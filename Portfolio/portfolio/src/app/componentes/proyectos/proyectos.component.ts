@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/servicios/login.service';
 })
 export class ProyectosComponent implements OnInit {
   form:FormGroup;
+  ListProyect!: Proyect[];
   proyect:any;
   usuarioAutenticado:boolean=false;
   visualizarId:boolean=false;
@@ -59,20 +60,20 @@ export class ProyectosComponent implements OnInit {
 
   ngOnInit(): void {
     this.miServicio.obtenerDatosProyectos().subscribe(data => {console.log(data);
-      this.proyect = data;
+      this.ListProyect = data;
     })
     this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 
-  mostrarDatosproyecto(id:number){
+  mostrarDatosproyecto(item:Proyect){
 
-    this.form.get("name")?.setValue(this.proyect[id-1].name)
-    this.form.get("title")?.setValue(this.proyect[id-1].title)
-    this.form.get("repo")?.setValue(this.proyect[id-1].repo);
-    this.form.get("img")?.setValue(this.proyect[id-1].img);
-    this.form.get("start")?.setValue(this.proyect[id-1].start);
-    this.form.get("end")?.setValue(this.proyect[id-1].end);
-    this.form.get("id")?.setValue(this.proyect[id-1].id);
+    this.form.get("name")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].name)
+    this.form.get("title")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].title)
+    this.form.get("repo")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].repo);
+    this.form.get("img")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].img);
+    this.form.get("start")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].start);
+    this.form.get("end")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].end);
+    this.form.get("id")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].id);
   }
 
 guardarDatosproyecto(proyect:Proyect){ if (this.form.valid)

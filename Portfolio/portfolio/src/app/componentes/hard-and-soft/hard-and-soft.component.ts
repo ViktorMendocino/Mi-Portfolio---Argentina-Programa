@@ -12,6 +12,8 @@ import { LoginService } from 'src/app/servicios/login.service';
 })
 export class HardAndSoftComponent implements OnInit {
   form:FormGroup;
+  ListHardSkills!:HardSkills[];
+  ListSoftSkills!:SoftSkills[];
   hardSkills:any;
   softSkills:any;
   usuarioAutenticado:boolean=false;
@@ -41,21 +43,21 @@ export class HardAndSoftComponent implements OnInit {
 
   ngOnInit(): void {
     this.miServicio.obtenerDatosHardSkills().subscribe(data => {console.log(data);
-      this.hardSkills = data;
+      this.ListHardSkills = data;
     })
     this.miServicio.obtenerDatosSoftSkills().subscribe(data => {console.log(data);
-      this.softSkills = data;
+      this.ListSoftSkills = data;
     })
     this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 //Metodos Hard Skills
-mostrarDatoshardSkills(id:number){
+mostrarDatoshardSkills(item:HardSkills){
 
-  this.form.get("name")?.setValue(this.hardSkills[id-1].name)
+  this.form.get("name")?.setValue(this.ListHardSkills[this.ListHardSkills.indexOf(item)].name)
 
-  this.form.get("id")?.setValue(this.hardSkills[id-1].id);
+  this.form.get("id")?.setValue(this.ListHardSkills[this.ListHardSkills.indexOf(item)].id);
 
-  this.form.get("value")?.setValue(this.hardSkills[id-1].value);
+  this.form.get("value")?.setValue(this.ListHardSkills[this.ListHardSkills.indexOf(item)].value);
 }
 
 
@@ -121,13 +123,13 @@ else{
 
 
 //Metodos Soft Skills
-mostrarDatosSoftSkills(id:number){
+mostrarDatosSoftSkills(item:SoftSkills){
 
-  this.form.get("name")?.setValue(this.softSkills[id-1].name)
+  this.form.get("name")?.setValue(this.ListSoftSkills[this.ListSoftSkills.indexOf(item)].name)
 
-  this.form.get("id")?.setValue(this.softSkills[id-1].id);
+  this.form.get("id")?.setValue(this.ListSoftSkills[this.ListSoftSkills.indexOf(item)].id);
 
-  this.form.get("value")?.setValue(this.softSkills[id-1].value);
+  this.form.get("value")?.setValue(this.ListSoftSkills[this.ListSoftSkills.indexOf(item)].value);
 }
 
 

@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/servicios/login.service';
 export class EducacionComponent implements OnInit {
 form:FormGroup;
 
-  education:any;
+  item:any;
   listEducation!: Education[];
   usuarioAutenticado:boolean=false;
   visualizarId:boolean=false;
@@ -60,21 +60,21 @@ form:FormGroup;
 
   ngOnInit(): void {
     this.miServicio.obtenerDatosEducacion().subscribe(data => {console.log(data);
-      this.education = data;
+      this.listEducation = data;
     })
     this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
 
   }
 
-  mostrarDatosEducation(id:number){
+  mostrarDatosEducation(item:Education){
 
-    this.form.get("school")?.setValue(this.education[id-1].school)
-    this.form.get("title")?.setValue(this.education[id-1].title)
-    this.form.get("career")?.setValue(this.education[id-1].career);
-    this.form.get("img")?.setValue(this.education[id-1].img);
-    this.form.get("start")?.setValue(this.education[id-1].start);
-    this.form.get("end")?.setValue(this.education[id-1].end);
-    this.form.get("id")?.setValue(this.education[id-1].id);
+    this.form.get("school")?.setValue(this.listEducation[this.listEducation.indexOf(item)].school)
+    this.form.get("title")?.setValue(this.listEducation[this.listEducation.indexOf(item)].title)
+    this.form.get("career")?.setValue(this.listEducation[this.listEducation.indexOf(item)].career);
+    this.form.get("img")?.setValue(this.listEducation[this.listEducation.indexOf(item)].img);
+    this.form.get("start")?.setValue(this.listEducation[this.listEducation.indexOf(item)].start);
+    this.form.get("end")?.setValue(this.listEducation[this.listEducation.indexOf(item)].end);
+    this.form.get("id")?.setValue(this.listEducation[this.listEducation.indexOf(item)].id);
   }
 
 
@@ -84,7 +84,7 @@ form:FormGroup;
 
 
 
-guardarDatosEducation(education:Education){ if (this.form.valid)
+guardarDatosEducation(item:Education){ if (this.form.valid)
   //con el siguiente codigo vamos a guardar los datos del formulario en un objeto personaEditar para luego guardarlos en nuestro objeto persona
 //creado en la carpeta entidades para mas adelante enviarlos a la base de datos
  {
@@ -98,8 +98,10 @@ guardarDatosEducation(education:Education){ if (this.form.valid)
 
 
    let educationEditar=new Education(id,school,title,img,start,end,career);
+
+
    this.miServicio.modificarDatosEducacion(educationEditar).subscribe({next: (d) => {
-     this.education=educationEditar;
+    this.listEducation[this.listEducation.indexOf(item)]=educationEditar;
      //usando DOM podemos acceder al boton que le asignamos el id="cerraModalEncabezado" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraeducationModal")?.click();
    },
@@ -121,7 +123,7 @@ eliminarEducacion(id:number){
 }
 
 
-crearEducation(education:Education){ if (this.form.valid)
+crearEducation(item:Education){ if (this.form.valid)
   //con el siguiente codigo vamos a guardar los datos del formulario en un objeto personaEditar para luego guardarlos en nuestro objeto persona
 //creado en la carpeta entidades para mas adelante enviarlos a la base de datos
  {
@@ -134,9 +136,9 @@ crearEducation(education:Education){ if (this.form.valid)
    let id=this.form.get("id")?.value;
 
 
-   let educationEditar=new Education(this.education.id,school,title,img,start,end,career);
+   let educationEditar=new Education(this.item.id,school,title,img,start,end,career);
    this.miServicio.crearDatosEducacion(educationEditar).subscribe({next: (d) => {
-     this.education=educationEditar;
+     this.item=educationEditar;
      //usando DOM podemos acceder al boton que le asignamos el id="cerraModalEncabezado" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraeducationModal2")?.click();
    },

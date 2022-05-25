@@ -5,7 +5,7 @@
   <button class="btn btn-primary" onclick="editarExperiencia()">Editar</button>-->
   <h1 class="m-1 p-4">Experiencia</h1>
   <div class="container-fluid m-1 p-4">
-    <div *ngFor="let item of experience" class="row">
+    <div *ngFor="let item of listExperience" class="row">
       <div class="col-2">
         <img [src]=item.img class="img-thumbnail" style="background-color: cornflowerblue;" width="200" height="10" alt="">
       </div>
@@ -13,7 +13,7 @@
         <h2>{{item.business}}</h2>
         <p>{{item.position}}-{{item.tasksDeveloped}}</p>
         <p>{{item.start}}-{{item.end}}</p>
-        <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#experienceModal" (click)="mostrarDatosExperiencia(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarExperiencia(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+        <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#experienceModal" (click)="mostrarDatosExperiencia(item)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarExperiencia(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
       </div>
       <div class="col">
       </div>
@@ -91,7 +91,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cerraexperienceModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-        <button type="button"  class="btn btn-primary"  (click)="guardarDatosExperiencia(experience)">Guardar Cambios</button>
+        <button type="button"  class="btn btn-primary"  (click)="guardarDatosExperiencia()">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cerraexperienceModal2" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-        <button type="button"  class="btn btn-primary" (click)="crearDatosExperiencia(experience)">Guardar Cambios</button>
+        <button type="button"  class="btn btn-primary" (click)="crearDatosExperiencia()">Guardar Cambios</button>
       </div>
     </div>
   </div>

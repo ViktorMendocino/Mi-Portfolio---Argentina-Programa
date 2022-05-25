@@ -1,8 +1,8 @@
 <section id="Conocimientos" class="m-1 p-2">
   <h1 class="m-1 p-4">Conocimientos</h1>
-  <div *ngFor="let item of knowledge"   class="card-body m-1 p-4">
+  <div *ngFor="let item of listKnowledge"   class="card-body m-1 p-4">
     <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
-    <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado"  data-bs-toggle="modal" data-bs-target="#conocimientosModal" (click)="mostrarDatosConocimiento(item.id)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarConocimientos(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+    <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado"  data-bs-toggle="modal" data-bs-target="#conocimientosModal" (click)="mostrarDatosConocimiento(item)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarConocimientos(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
 </div>
 <button class="btn btn-outline-success"  *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#conocimientoModal2"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
 
@@ -52,7 +52,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5  class="modal-title" id="conocimientModalTitulo2">Editar Educación</h5>
+        <h5  class="modal-title" id="conocimientModalTitulo2">Crear Conocimiento</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

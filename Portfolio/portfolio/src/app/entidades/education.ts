@@ -1,11 +1,16 @@
 export class Education{
-  private id: number;
- private school: string;
- private title: string;
- private img: string;
- private start: string;
- private end: string;
- private career: string;
+  id: number;
+  school: string;
+
+  title: string;
+
+  img: string;
+
+  start: string;
+
+ end: string;
+
+ career: string;
 
 
 

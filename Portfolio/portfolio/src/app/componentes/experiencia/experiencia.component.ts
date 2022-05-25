@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/servicios/login.service';
 })
 export class ExperienciaComponent implements OnInit {
   form:FormGroup;
+  listExperience!:Experience[];
   experience:any;
   usuarioAutenticado:boolean=false;
   visualizarId:boolean=false;
@@ -57,25 +58,25 @@ export class ExperienciaComponent implements OnInit {
 
   ngOnInit(): void {
     this.miServicio.obtenerDatosExp().subscribe(data => {console.log(data);
-      this.experience = data;
+      this.listExperience = data;
     })
     this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 
 
 
-  mostrarDatosExperiencia(id:number){
+  mostrarDatosExperiencia(item:Experience){
 
-    this.form.get("business")?.setValue(this.experience[id-1].business)
-    this.form.get("position")?.setValue(this.experience[id-1].position)
-    this.form.get("tasksDeveloped")?.setValue(this.experience[id-1].tasksDeveloped);
-    this.form.get("img")?.setValue(this.experience[id-1].img);
-    this.form.get("start")?.setValue(this.experience[id-1].start);
-    this.form.get("end")?.setValue(this.experience[id-1].end);
-    this.form.get("id")?.setValue(this.experience[id-1].id);
+    this.form.get("business")?.setValue(this.listExperience[this.listExperience.indexOf(item)].business)
+    this.form.get("position")?.setValue(this.listExperience[this.listExperience.indexOf(item)].position)
+    this.form.get("tasksDeveloped")?.setValue(this.listExperience[this.listExperience.indexOf(item)].tasksDeveloped);
+    this.form.get("img")?.setValue(this.listExperience[this.listExperience.indexOf(item)].img);
+    this.form.get("start")?.setValue(this.listExperience[this.listExperience.indexOf(item)].start);
+    this.form.get("end")?.setValue(this.listExperience[this.listExperience.indexOf(item)].end);
+    this.form.get("id")?.setValue(this.listExperience[this.listExperience.indexOf(item)].id);
   }
 
-guardarDatosExperiencia(experience:Experience){ if (this.form.valid)
+guardarDatosExperiencia(){ if (this.form.valid)
 
  {
    let business=this.form.get("business")?.value;
@@ -89,7 +90,10 @@ guardarDatosExperiencia(experience:Experience){ if (this.form.valid)
 
    let experienceEditar=new Experience(id,business,position,img,start,end,tasksDeveloped);
    this.miServicio.editarDatosExp(experienceEditar).subscribe({next: (d) => {
-     this.experience=experienceEditar;
+    this.listExperience.splice(this.listExperience.findIndex((element) =>element.id===this.form.get("id")?.value),1,experienceEditar);
+    //this.listExperience.splice((this.listExperience.indexOf((this.form.get("id")?.value))-1),1,experienceEditar);
+
+
      //usando DOM podemos acceder al boton que le asignamos el id="cerraModalexperiencia" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraexperienceModal")?.click();
    },
@@ -103,15 +107,18 @@ guardarDatosExperiencia(experience:Experience){ if (this.form.valid)
 
 }
 
-eliminarExperiencia(id:number){
-
-  this.miServicio.eliminarExperienciaPorId(id).subscribe(data => {console.log(data)})
+eliminarExperiencia(item:number){
+  console.log(item);
+  this.miServicio.eliminarExperienciaPorId(item).subscribe(data => {
+   this.listExperience.splice(this.listExperience.findIndex((element) =>element.id===item),1);
+   //console.log(this.listExperience.splice(this.listExperience.findIndex((element) =>element.id===item),1));
+  })
 
   alert("El registro se ha eliminado.")
 }
 
 
-crearDatosExperiencia(experience:Experience){ if (this.form.valid)
+crearDatosExperiencia(){ if (this.form.valid)
   //con el siguiente codigo vamos a guardar los datos del formulario en un objeto personaEditar para luego guardarlos en nuestro objeto persona
 //creado en la carpeta entidades para mas adelante enviarlos a la base de datos
  {
@@ -121,12 +128,12 @@ crearDatosExperiencia(experience:Experience){ if (this.form.valid)
    let img=this.form.get("img")?.value;
    let start=this.form.get("start")?.value;
    let end=this.form.get("end")?.value;
-   let id=this.form.get("id")?.value;
+   let id=(this.listExperience[this.listExperience.length - 1].id)+1
 
 
-   let experienceEditar=new Experience(this.experience.id,business,position,img,start,end,tasksDeveloped);
+   let experienceEditar=new Experience(id,business,position,img,start,end,tasksDeveloped);
    this.miServicio.crearDatosExperiencia(experienceEditar).subscribe({next: (d) => {
-     this.experience=experienceEditar;
+     this.listExperience.push(experienceEditar);
      //usando DOM podemos acceder al boton que le asignamos el id="cerraModalEncabezado" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraexperienceModal2")?.click();
    },
