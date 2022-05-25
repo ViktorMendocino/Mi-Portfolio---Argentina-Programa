@@ -76,6 +76,8 @@ export class ExperienciaComponent implements OnInit {
     this.form.get("id")?.setValue(this.listExperience[this.listExperience.indexOf(item)].id);
   }
 
+
+  
 guardarDatosExperiencia(){ if (this.form.valid)
 
  {
@@ -87,15 +89,12 @@ guardarDatosExperiencia(){ if (this.form.valid)
    let end=this.form.get("end")?.value;
    let id=this.form.get("id")?.value;
 
-
    let experienceEditar=new Experience(id,business,position,img,start,end,tasksDeveloped);
    this.miServicio.editarDatosExp(experienceEditar).subscribe({next: (d) => {
     this.listExperience.splice(this.listExperience.findIndex((element) =>element.id===this.form.get("id")?.value),1,experienceEditar);
-    //this.listExperience.splice((this.listExperience.indexOf((this.form.get("id")?.value))-1),1,experienceEditar);
-
-
-     //usando DOM podemos acceder al boton que le asignamos el id="cerraModalexperiencia" y lo obligamos a hacer click para que se cierre la venta modal
+      //usando DOM podemos acceder al boton que le asignamos el id="cerraexperienceModal" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraexperienceModal")?.click();
+     alert("El registro se ha modificado.")
    },
      error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
    })
@@ -111,7 +110,6 @@ eliminarExperiencia(item:number){
   console.log(item);
   this.miServicio.eliminarExperienciaPorId(item).subscribe(data => {
    this.listExperience.splice(this.listExperience.findIndex((element) =>element.id===item),1);
-   //console.log(this.listExperience.splice(this.listExperience.findIndex((element) =>element.id===item),1));
   })
 
   alert("El registro se ha eliminado.")
@@ -134,8 +132,9 @@ crearDatosExperiencia(){ if (this.form.valid)
    let experienceEditar=new Experience(id,business,position,img,start,end,tasksDeveloped);
    this.miServicio.crearDatosExperiencia(experienceEditar).subscribe({next: (d) => {
      this.listExperience.push(experienceEditar);
-     //usando DOM podemos acceder al boton que le asignamos el id="cerraModalEncabezado" y lo obligamos a hacer click para que se cierre la venta modal
+     //usando DOM podemos acceder al boton que le asignamos el id="cerraexperienceModal2" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraexperienceModal2")?.click();
+     alert("El registro se ha creado.")
    },
      error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
    })

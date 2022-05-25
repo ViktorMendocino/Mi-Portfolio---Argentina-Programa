@@ -62,7 +62,7 @@ mostrarDatoshardSkills(item:HardSkills){
 
 
 
-guardarDatoshardSkillss(hardSkills:HardSkills){ if (this.form.valid)
+guardarDatoshardSkillss(){ if (this.form.valid)
 //con el siguiente codigo vamos a guardar los datos del formulario en un objeto personaEditar para luego guardarlos en nuestro objeto persona
 //creado en la carpeta entidades para mas adelante enviarlos a la base de datos
 {
@@ -74,9 +74,10 @@ guardarDatoshardSkillss(hardSkills:HardSkills){ if (this.form.valid)
 
  let hardSkillsEditar=new HardSkills(id,name,value);
  this.miServicio.editarDatosHarSkills(hardSkillsEditar).subscribe({next: (d) => {
-   this.hardSkills=hardSkillsEditar;
-   //usando DOM podemos acceder al boton que le asignamos el id="cerrahardSkillsModa" y lo obligamos a hacer click para que se cierre la venta modal
+  this.ListHardSkills.splice(this.ListHardSkills.findIndex((element) =>element.id===this.form.get("id")?.value),1,hardSkillsEditar);
+   //usando DOM podemos acceder al boton que le asignamos el id="cerrarhardSkillsModal" y lo obligamos a hacer click para que se cierre la venta modal
    document.getElementById("cerrarhardSkillsModal")?.click();
+  
  },
    error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
  })
@@ -88,27 +89,31 @@ else{
 
 }
 
-eliminarHardSkills(id:number){
+eliminarHardSkills(item:number){
 
-this.miServicio.eliminarHardPorId(id).subscribe(data => {console.log(data)})
+this.miServicio.eliminarHardPorId(item).subscribe(data => {
+
+this.ListHardSkills.splice(this.ListHardSkills.findIndex((element) =>element.id===item),1);
+})
 
 alert("El registro se ha eliminado.")
 }
 
 
-crearHardSkills(hardSkills:HardSkills){ if (this.form.valid)
+crearHardSkills(){ if (this.form.valid)
 //con el siguiente codigo vamos a guardar los datos del formulario en un objeto personaEditar para luego guardarlos en nuestro objeto persona
 //creado en la carpeta entidades para mas adelante enviarlos a la base de datos
 {
  let name=this.form.get("name")?.value;
- let id=this.form.get("id")?.value;
+ let id=(this.ListHardSkills[this.ListHardSkills.length - 1].id)+1
  let value=this.form.get("value")?.value;
 
- let hardSkillsEditar=new HardSkills(this.hardSkills.id,name , value);
+ let hardSkillsEditar=new HardSkills(id,name , value);
  this.miServicio.editarDatosHarSkills(hardSkillsEditar).subscribe({next: (d) => {
-   this.hardSkills=hardSkillsEditar;
+ this.ListHardSkills.push(hardSkillsEditar);
    //usando DOM podemos acceder al boton que le asignamos el id="cerrahardSkillsModal2" y lo obligamos a hacer click para que se cierre la venta modal
    document.getElementById("CerrarhardSkillsModal2")?.click();
+
  },
    error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
  })
@@ -134,7 +139,7 @@ mostrarDatosSoftSkills(item:SoftSkills){
 
 
 
-guardarDatosSoftSkills(softSkills:SoftSkills){ if (this.form.valid)
+guardarDatosSoftSkills(){ if (this.form.valid)
 //con el siguiente codigo vamos a guardar los datos del formulario en un objeto personaEditar para luego guardarlos en nuestro objeto persona
 //creado en la carpeta entidades para mas adelante enviarlos a la base de datos
 {
@@ -146,9 +151,10 @@ guardarDatosSoftSkills(softSkills:SoftSkills){ if (this.form.valid)
 
  let softSkillsEditar=new SoftSkills(id,name,value);
  this.miServicio.editarDatosSoftSkills(softSkillsEditar).subscribe({next: (d) => {
-   this.softSkills=softSkillsEditar;
+this.ListSoftSkills.splice(this.ListSoftSkills.findIndex((element) =>element.id===this.form.get("id")?.value),1,softSkillsEditar);
    //usando DOM podemos acceder al boton que le asignamos el id="cerrasoftSkillsModa" y lo obligamos a hacer click para que se cierre la venta modal
    document.getElementById("cerrarsoftSkillsModal")?.click();
+
  },
    error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
  })
@@ -160,26 +166,29 @@ else{
 
 }
 
-eliminarSoftSkills(id:number){
+eliminarSoftSkills(item:number){
 
-this.miServicio.eliminarSoftPorId(id).subscribe(data => {console.log(data)})
+this.miServicio.eliminarSoftPorId(item).subscribe(data => {
+  this.ListSoftSkills.splice(this.ListSoftSkills.findIndex((element) =>element.id===item),1);
+})
 
 alert("El registro se ha eliminado.")
 }
 
 
-crearSoftSkills(softSkills:SoftSkills){ if (this.form.valid)
+crearSoftSkills(){ if (this.form.valid)
 
 {
  let name=this.form.get("name")?.value;
- let id=this.form.get("id")?.value;
+ let id=(this.ListSoftSkills[this.ListSoftSkills.length - 1].id)+1
  let value=this.form.get("value")?.value;
 
- let softSkillsEditar=new SoftSkills(this.softSkills.id,name, value);
+ let softSkillsEditar=new SoftSkills(id,name, value);
  this.miServicio.editarDatosSoftSkills(softSkillsEditar).subscribe({next: (d) => {
-   this.softSkills=softSkillsEditar;
+this.ListSoftSkills.push(softSkillsEditar);
    //usando DOM podemos acceder al boton que le asignamos el id="cerraSoftSkillsModal2" y lo obligamos a hacer click para que se cierre la venta modal
    document.getElementById("CerrarsoftSkillsModal2")?.click();
+
  },
    error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
  })

@@ -76,7 +76,7 @@ export class ProyectosComponent implements OnInit {
     this.form.get("id")?.setValue(this.ListProyect[this.ListProyect.indexOf(item)].id);
   }
 
-guardarDatosproyecto(proyect:Proyect){ if (this.form.valid)
+guardarDatosproyecto(){ if (this.form.valid)
 
  {
    let name=this.form.get("name")?.value;
@@ -90,9 +90,10 @@ guardarDatosproyecto(proyect:Proyect){ if (this.form.valid)
 
    let proyectEditar=new Proyect(id,name,title,img,start,end,repo);
    this.miServicio.editarDatosProyecto(proyectEditar).subscribe({next: (d) => {
-     this.proyect=proyectEditar;
+    this.ListProyect.splice(this.ListProyect.findIndex((element) =>element.id===this.form.get("id")?.value),1,proyectEditar);
      //usando DOM podemos acceder al boton que le asignamos el id="cerraModalproyecto" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraproyectModal")?.click();
+
    },
      error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
    })
@@ -104,15 +105,17 @@ guardarDatosproyecto(proyect:Proyect){ if (this.form.valid)
 
 }
 
-eliminarProyecto(id:number){
+eliminarProyecto(item:number){
 
-  this.miServicio.eliminarProyectosPorId(id).subscribe(data => {console.log(data)})
+  this.miServicio.eliminarProyectosPorId(item).subscribe(data => {
+    this.ListProyect.splice(this.ListProyect.findIndex((element) =>element.id===item),1);
+  })
 
   alert("El registro se ha eliminado.")
 }
 
 
-crearDatosProyecto(proyect:Proyect){ if (this.form.valid)
+crearDatosProyecto(){ if (this.form.valid)
 
  {
    let name=this.form.get("name")?.value;
@@ -121,14 +124,15 @@ crearDatosProyecto(proyect:Proyect){ if (this.form.valid)
    let img=this.form.get("img")?.value;
    let start=this.form.get("start")?.value;
    let end=this.form.get("end")?.value;
-   let id=this.form.get("id")?.value;
+   let id=(this.ListProyect[this.ListProyect.length - 1].id)+1
 
 
    let proyectEditar=new Proyect(this.proyect.id,name,title,img,start,end,repo);
    this.miServicio.crearDatosProyectos(proyectEditar).subscribe({next: (d) => {
-     this.proyect=proyectEditar;
+    this.ListProyect.push(proyectEditar);
      //usando DOM podemos acceder al boton que le asignamos el id="cerraModalProyecto" y lo obligamos a hacer click para que se cierre la venta modal
      document.getElementById("cerraproyectModal2")?.click();
+
    },
      error:(e)=> {alert("Ups, no se puedo actualizar el registro.")}
    })

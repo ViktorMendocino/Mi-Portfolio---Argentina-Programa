@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
   //metodos
 
 
-  verificarLogin(){
+verificarLogin(){
     if (this.form.valid){
    let user = this.form.get("usuario")?.value;
    let pwd = this.form.get("pwd")?.value;
@@ -64,13 +64,13 @@ export class NavbarComponent implements OnInit {
    }
   }
 
-  agregarLogin(){
+agregarLogin(){
 this.loginServicio.disparadordeLogin.emit({
 data:this.usuarioAutenticado
 })
 }
 
- logOut(){
+logOut(){
   this.miServicio.cerrarLogin.emit({
     data:this.usuarioAutenticado
   })
