@@ -1,10 +1,12 @@
 export class Persona{
-  private id: number;
- private fullName: string;
- private position: string;
- private ubication: string;
- private url: string;
- private background: string;
+
+ public id: number;
+ public fullName: string;
+ public position: string;
+ public ubication: string;
+ public url: string;
+ public background: string;
+
 
  constructor( id:number , fullName:string,   position:string, ubication:string, url:string, background: string)
  {

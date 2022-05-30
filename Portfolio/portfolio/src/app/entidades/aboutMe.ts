@@ -1,6 +1,10 @@
 export class AboutMe{
-  private id: number;
- private name: string;
+  public id: number;
+  public name: string;
+
+
+
+
 
  constructor( id:number , name: string )
  {

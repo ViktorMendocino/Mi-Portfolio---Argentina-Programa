@@ -1,8 +1,7 @@
 export class Knowledge{
-  private id: number;
- private name: string;
 
-
+  public id: number;
+  public name: string;
 
 
 

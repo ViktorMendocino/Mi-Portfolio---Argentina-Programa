@@ -1,10 +1,12 @@
 <nav class="navbar navbar-dark bg-primary  rounded-top" >
   <div class="container-fluid ">
+
     <a class="navbar-brand" href="#">
-      <img src="assets\imagenes\iconoArPro.png" alt="" width="50" height="30">
+      <img src="assets\imagenes\iconoArPro.png"   alt="" width="50" height="30">
     </a>
-    <a class="navbar-brand text-white justify-content flex-grow-1 pe-3" href="#">Argentina Programa -
-      #YoProgramo</a>
+    <a class="navbar-brand text-white justify-content flex-grow-1 pe-3" href="#">Argentina Programa - #YoProgramo</a>
+
+
 
 
     <ul class="nav bg-primary justify-content-end">
@@ -25,18 +27,51 @@
         </svg></a>
         </li>
       </ul>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" *ngIf="!usuarioAutenticado">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <button type="button" class="btn btn-danger" *ngIf="usuarioAutenticado" (click)="cerrarlogin()" >Cerrar sesión</button>
 
 
-      <div class="offcanvas offcanvas-end bg-primary" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+      <div class="offcanvas offcanvas-end bg-primary" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"   >
                <div class="offcanvas-header">
-                 <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Portfolio</h5>
-                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                 <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel"></h5>
+                 <button type="button" id="cerrarCanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                </div>
             <div class="offcanvas-body">
 
+              <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+                <div class="mb-3">
+                  <label for="usuario" class="form-label text-white">Correo electronico</label>
+                  <input type="mail" class="form-control" id="usuario" formControlName="usuario" ><!--se agrega formControlName="fullName" para indicarle
+                    que instancia pertenece a cada campo-->
+                    <!--se agregan validaciones para la interface de usuario con el ngIf-->
+                    <div *ngIf="usuario?.invalid && usuario?.touched">
+                      <div *ngIf="usuario?.errors?.['required']" class="text-danger">
+                          El Correo es requerido.
+                      </div>
+                      <div *ngIf="usuario?.errors?.['minlength']" class="text-danger">
+                        El Correo debe tener como  mínimo 5 caracteres.
+                      </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                  <label for="pwd" class="form-label text-white">Contraseña</label>
+                  <input type="password" class="form-control" id="pwd" formControlName="pwd"  >
+                  <div *ngIf="pwd?.invalid && pwd?.touched">
+                    <div *ngIf="pwd?.errors?.['required']" class="text-danger">
+                        La contraseña es requerida.
+                    </div>
+                    <div *ngIf="pwd?.errors?.['minlength']" class="text-danger">
+                      La contraseña debe tener como  mínimo 5 caracteres.
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <button type="button" class="btn btn-success" (click)="verificarLogin()" >Login</button>
+<!--
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
                    <a class="nav-link active text-white" aria-current="#" href="#">Educación</a>
@@ -61,6 +96,8 @@
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
              </form>
+
+             -->
 
            </div>
       </div>

@@ -1,4 +1,3 @@
-
 package com.portfolioWeb.portfolio.Model;
 
 import javax.persistence.Basic;
@@ -11,23 +10,23 @@ import lombok.Setter;
 
 @Getter @Setter
  @Entity
-public class SoftSkills {
-    
+public class UserAndKey {
         @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Basic
-    private String name;
-    private String value;
-
-    public SoftSkills(long id, String name, String value) {
-        this.id = id;
-        this.name = name;
-        this.value=value;
-    }
-
-    public SoftSkills() {
-    }
+    private String usuario ;
+    private String pwd ;
     
+    public UserAndKey(long id, String usuario, String pwd) {
+        this.id = id;
+        this.usuario = usuario;
+        this.pwd = pwd;
+    }
+
+    public UserAndKey() {
+    }
+
+  
     
 }

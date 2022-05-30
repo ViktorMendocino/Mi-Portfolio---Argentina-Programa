@@ -1,8 +1,87 @@
 <section id="Conocimientos" class="m-1 p-2">
-  <h1>Conocimientos</h1>
-  <div *ngFor="let item of knowledge"   class="card-body">
+  <h1 class="m-1 p-4">Conocimientos</h1>
+  <div *ngFor="let item of listKnowledge"   class="card-body m-1 p-4">
     <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
-    <button class="btn btn-outline-primary" onclick="editarKnowledge()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" onclick="eliminarKnowledge()"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+    <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado"  data-bs-toggle="modal" data-bs-target="#conocimientosModal" (click)="mostrarDatosConocimiento(item)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarConocimientos(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
 </div>
-  <button class="btn btn-outline-success" onclick="crearKnowledge()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+<button class="btn btn-outline-success"  *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#conocimientoModal2"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+
 </section>
+
+<!-- Ventana Modal editar modificar Conocimientos -->
+<div class="modal fade" id="conocimientosModal" tabindex="-1" aria-labelledby="conocimientosModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="conocimientosModalTitulo">Editar Conocimientos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div  class="mb-3" *ngIf="visualizarId">
+            <label  for="id"  class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                    La descripción es requerida.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  La descripción debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerrarconocimientosModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="guardarDatosConocimientos()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ventana Modal editar crear Conocimientos -->
+<div class="modal fade" id="conocimientoModal2" tabindex="-1" aria-labelledby="conocimientModalTitulo2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="conocimientModalTitulo2">Crear Conocimiento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div  class="mb-3" *ngIf="visualizarId">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Conocimiento</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                  El Conocimiento es requerida.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  El Conocimiento debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="CerrarconocimientoModal2" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="crearConocimiento(knowledge)">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

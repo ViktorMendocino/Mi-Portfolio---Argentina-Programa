@@ -1,11 +1,12 @@
 export class Experience{
-  private id: number;
- private business: string;
- private position: string;
- private img: string;
- private start: string;
- private end: string;
- private tasksDeveloped: string;
+
+ public id: number;
+ public business: string;
+ public position: string;
+ public img: string;
+ public start: string;
+ public end: string;
+ public tasksDeveloped: string;
 
 
 
@@ -15,8 +16,6 @@ export class Experience{
      this.id=id;
      this.business=business;
      this.position=position;
-     this.img=img;
-     this.start=start;
      this.img=img;
      this.start=start;
      this.end=end;

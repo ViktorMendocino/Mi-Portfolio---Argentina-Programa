@@ -1,39 +1,248 @@
-<section id="Hard and Soft Skills" class="m-1 p-2">
+<section id="Hard and Soft Skills" class="m-1 ">
 
-
-  <div class="container d-flex justify-content-center mt-100">
-    <div class="row">
-      <div class="col-lg-6 mb-4">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><h1>Hard Skills<button class="btn btn-outline-success" onclick="crearHardSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
+  <div class="row d-flex ps-1 pe-1 mt-100 ">
+      <div class="col-lg-6  mb-4">
+        <div class="card w-100 shadow align-self-center mb-4">
+            <div class="card-header align-self-center py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><h1>Habilidades Duras<button class="btn btn-outline-success" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#hardSkillsModal2" onclick="crearHardSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
             </div>
-            <div *ngFor="let item of hardSkills"   class="card-body">
+            <div *ngFor="let item of ListHardSkills"   class="card-body ">
                 <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
                 <div class="progress mb-4">
                     <div class="progress-bar bg-blue" role="progressbar" [style.width.%] ="item.value" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <button class="btn btn-outline-primary" onclick="editarHardSkills()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" onclick="eliminarHardSkills()"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+                <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#hardSkillsModal" (click)="mostrarDatoshardSkills(item)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarHardSkills(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
             </div>
         </div>
     </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary"><h1>Soft Skills<button class="btn btn-outline-success" onclick="crearSoftSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
+        <div class="col-lg-6  mb-4">
+            <div class="card w-100 shadow align-self-center mb-4">
+                <div class="card-header align-self-center py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"><h1>Habilidades Blandas<button class="btn btn-outline-success" *ngIf="usuarioAutenticado" data-bs-toggle="modal" data-bs-target="#softSkillsModal2" onclick="crearSoftSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button></h1></h6>
                 </div>
-                <div *ngFor="let item of softSkills"   class="card-body">
+                <div *ngFor="let item of ListSoftSkills"   class="card-body ">
                     <h4 class="small font-weight-bold"><h5>{{item.name}}</h5> <span class="float-right"></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-danger" role="progressbar" [style.width.%] ="item.value" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <button class="btn btn-outline-primary" onclick="editarSoftSkills()"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" onclick="eliminarSoftSkills()"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
+                    <button class="btn btn-outline-primary" *ngIf="usuarioAutenticado"  data-bs-toggle="modal" data-bs-target="#softSkillsModal" (click)="mostrarDatosSoftSkills(item)"><img src="https://img.icons8.com/material-outlined/20/000000/pencil--v1.png"/></button><button class="btn btn-outline-danger" *ngIf="usuarioAutenticado" (click)="eliminarSoftSkills(item.id)"><img src="https://img.icons8.com/emoji/20/000000/cross-mark-emoji.png"/></button>
                 </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<button class="btn btn-outline-success" onclick="crearSoftSkills()"><img src="https://img.icons8.com/ios-glyphs/30/000000/new.png"/></button>
+
 
 </section>
 
+<!-- Ventana Modal HardSkills -->
+<!-- Ventana Modal editar modificar HardSkills -->
+<div class="modal fade" id="hardSkillsModal" tabindex="-1" aria-labelledby="hardSkillsModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="hardSkillsModalTitulo">Editar Habilidad Dura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div  class="mb-3" *ngIf="visualizarId">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre de la Habiliad Dura</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                    El Nombre es requerido.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  El Nombre debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="value" class="form-label">Valor en porcentaje</label>
+            <input type="text" class="form-control" id="value" formControlName="value" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="value?.invalid && value?.touched">
+                <div *ngIf="value?.errors?.['required']" class="text-danger">
+                  El valor en porcentaje es requerido.
+                </div>
+                <div *ngIf="value?.errors?.['minlength']" class="text-danger">
+                  El valor en porcentaje debe tener como  mínimo 2 caracteres.
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerrarhardSkillsModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="guardarDatoshardSkillss()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ventana Modal editar crear HardSkills -->
+<div class="modal fade" id="hardSkillsModal2" tabindex="-1" aria-labelledby="hardSkillsModalTitulo2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="hardSkillsModalTitulo2">Crear Habilidad Dura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div  class="mb-3" *ngIf="visualizarId">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre de la Habilidad Dura</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                  El Nombre es requerido.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  El Nombre debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="value" class="form-label">Valor en porcentaje<</label>
+            <input type="text" class="form-control" id="value" formControlName="value" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="value?.invalid && value?.touched">
+                <div *ngIf="value?.errors?.['required']" class="text-danger">
+                   El valor en porcentaje es requerido.
+                </div>
+                <div *ngIf="value?.errors?.['minlength']" class="text-danger">
+                  El valor en porcentaje debe tener como  mínimo 2 caracteres.
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="CerrarhardSkillsModal2" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="crearHardSkills()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Ventana Modal SoftSkills -->
+<!-- Ventana Modal editar modificar Softkills -->
+<div class="modal fade" id="softSkillsModal" tabindex="-1" aria-labelledby="softSkillsModalTitulo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="softSkillsModalTitulo">Editar Habilidades Blandas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div  class="mb-3">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre de la Habilidad Blanda</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                    El Nombre es requerido.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  El Nombre debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="value" class="form-label">Valor en porcentaje</label>
+            <input type="text" class="form-control" id="value" formControlName="value" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="value?.invalid && value?.touched">
+                <div *ngIf="value?.errors?.['required']" class="text-danger">
+                  El valor en porcentaje es requerido.
+                </div>
+                <div *ngIf="value?.errors?.['minlength']" class="text-danger">
+                  El valor en porcentaje debe tener como  mínimo 2 caracteres.
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerrarsoftSkillsModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="guardarDatosSoftSkills()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ventana Modal editar crear softSkills2 -->
+<div class="modal fade" id="softSkillsModal2" tabindex="-1" aria-labelledby="softSkillsModalTitulo2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5  class="modal-title" id="softSkillsModalTitulo2">Crear Habilidad Blanda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!-- formulario dentro de la Ventana Modal -->
+        <form [formGroup]="form"><!--se enlaza el formulario con el servicio por medio de [formGroup]="form" que se agrega-->
+          <div  class="mb-3" *ngIf="visualizarId">
+            <label for="id" class="form-label">Registro N°</label>
+            <input type="text" class="form-control" id="id" formControlName="id"  >
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre de la habilidad Blanda</label>
+            <input type="text" class="form-control" id="name" formControlName="name" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-danger">
+                  El Nombre es requerido.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-danger">
+                  El Nombre debe tener como  mínimo 5 caracteres.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="value" class="form-label">Valor en porcentaje</label>
+            <input type="text" class="form-control" id="value" formControlName="value" ><!--se agrega formControlName="school" para indicarle
+              que instancia pertenece a cada campo-->
+              <!--se agregan validaciones para la interface de usuario con el ngIf-->
+              <div *ngIf="value?.invalid && value?.touched">
+                <div *ngIf="value?.errors?.['required']" class="text-danger">
+                   El valor en porcentaje es requerido.
+                </div>
+                <div *ngIf="value?.errors?.['minlength']" class="text-danger">
+                  El valor en porcentaje debe tener como  mínimo 2 caracteres.
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="CerrarsoftSkillsModal2" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button"  class="btn btn-primary" (click)="crearSoftSkills()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

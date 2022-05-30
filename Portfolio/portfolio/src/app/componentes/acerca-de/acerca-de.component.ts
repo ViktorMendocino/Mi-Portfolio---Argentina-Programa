@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AboutMe } from 'src/app/entidades/aboutMe';
 import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-acerca-de',
@@ -10,10 +11,10 @@ import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
 })
 export class AcercaDeComponent implements OnInit {
   aboutMe:any;
-  usuarioAutenticado:boolean=true;//atencion!! al comienzo siempre debe estar en false
+  usuarioAutenticado:boolean=false;//atencion!! al comienzo siempre debe estar en false
   form:FormGroup;
 
-  constructor(private miServicio:AcercaDeService , private miFormBuilder:FormBuilder ) {
+  constructor(private miServicio:AcercaDeService , private miFormBuilder:FormBuilder ,private loginServicio:LoginService ) {
     this.form=this.miFormBuilder.group({
       // se agregan las validaciones(form control) de cada campo de formulario por intermedio de la clase Validators
       name:['',[Validators .required,Validators.minLength(10)]],
@@ -30,6 +31,7 @@ export class AcercaDeComponent implements OnInit {
     this.miServicio.obtenerDatosAboutMe(1).subscribe(data => {console.log(data);
       this.aboutMe = data;
     })
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
 
 

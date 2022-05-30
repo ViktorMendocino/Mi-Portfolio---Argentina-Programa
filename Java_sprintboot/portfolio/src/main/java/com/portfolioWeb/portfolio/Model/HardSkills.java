@@ -23,8 +23,9 @@ public class HardSkills {
     public HardSkills(long id, String name, String value) {
         this.id = id;
         this.name = name;
-        this.value = value;
+        this.value=value;
     }
+
 
     public HardSkills() {
     }

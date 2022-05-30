@@ -7,7 +7,7 @@ import { Proyect } from '../entidades/proyect';
   providedIn: 'root'
 })
 export class ProyectosService {
-  direccion:String = 'http://localhost:8080'
+  direccion:String = 'https://victormirandaportfolio.herokuapp.com'
 
   constructor(private http: HttpClient) {
     console.log("el servicio esta corriendo");
@@ -20,7 +20,15 @@ obtenerDatosProyectos():Observable<any> {
 }
 editarDatosProyecto(proyect:Proyect):Observable<any>{
 
-  return this.http.put(this.direccion+"/modificarHSkills",proyect);
+  return this.http.put(this.direccion+"/modificarProyecto",proyect);
   }
+
+  eliminarProyectosPorId(id:number):Observable<any> {
+    return this.http.delete(this.direccion+"/eliminarProyecto/"+id)}
+
+    crearDatosProyectos(proyect:Proyect):Observable<any> {
+     return this.http.post(this.direccion+"/crearProyecto",proyect)}
+
+
 
 }

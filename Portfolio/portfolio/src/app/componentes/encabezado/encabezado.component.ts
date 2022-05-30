@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { EncabezadoService } from 'src/app/servicios/encabezado.service';
 import { Persona } from 'src/app/entidades/persona';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-encabezado',
@@ -10,10 +11,10 @@ import { Persona } from 'src/app/entidades/persona';
 })
 export class EncabezadoComponent implements OnInit {
   persona:any;
-  usuarioAutenticado:boolean=true;//atencion!! al comienzo siempre debe estar en false
+  usuarioAutenticado:boolean=false;//atencion!! al comienzo siempre debe estar en false
   form:FormGroup;
   //creamos un servicio para encabezado y tambien el Formbuilder es un servicio , al ser ambos servicios se agregan como argumentos en el constructor
-  constructor(private miServicio:EncabezadoService , private miFormBuilder:FormBuilder) {
+  constructor(private miServicio:EncabezadoService , private miFormBuilder:FormBuilder ,private loginServicio:LoginService) {
     // hay que crear una instacia de nuestro objeto  "form:FormGroup;" ,por cada campo de formulario
   this.form=this.miFormBuilder.group({
     // se agregan las validaciones(form control) de cada campo de formulario por intermedio de la clase Validators
@@ -55,6 +56,7 @@ export class EncabezadoComponent implements OnInit {
     this.miServicio.obtenerDatosPersona(1).subscribe(data => {console.log(data);
       this.persona = data;
     })
+    this.loginServicio.disparadordeLogin.subscribe(data => {this.usuarioAutenticado=data;})
   }
   guardarDatosEncabezado(){
     if (this.form.valid)

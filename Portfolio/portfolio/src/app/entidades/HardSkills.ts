@@ -1,8 +1,9 @@
 export class HardSkills{
-  private id: number;
- private name: string;
- private value: string;
+  public id: number;
+  public name: string;
+  public value: string;
 
+//getters and setters
 
 
 
