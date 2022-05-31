@@ -17,7 +17,6 @@ export class Education{
      this.title=title;
      this.img=img;
      this.start=start;
-     this.img=img;
      this.start=start;
      this.end=end;
      this.career=career;
